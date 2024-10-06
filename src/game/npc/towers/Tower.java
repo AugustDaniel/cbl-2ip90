@@ -5,6 +5,7 @@ import game.npc.Npc;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
+import java.util.List;
 
 public abstract class Tower extends Npc implements Comparable<Tower> {
 
@@ -48,6 +49,11 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     }
 
     @Override
+    public void update(List<? extends Npc> npcs) {
+
+    }
+
+    @Override
     public String toString() {
         return this.name;
     }
@@ -56,4 +62,6 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     public int compareTo(Tower o) {
         return Integer.compare(this.price, o.price);
     }
+
+    public abstract Tower copyOf();
 }

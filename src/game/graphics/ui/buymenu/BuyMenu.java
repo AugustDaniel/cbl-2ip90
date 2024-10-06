@@ -11,6 +11,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class BuyMenu extends UIComponent {
 
@@ -54,5 +55,15 @@ public class BuyMenu extends UIComponent {
         for (BuyMenuItem item : menuItems) {
             item.setBuyAble(item.getTower().getPrice() <= gameManager.getPlayerMoney());
         }
+    }
+
+    public Optional<Tower> getSelected(Point2D point) {
+        for (BuyMenuItem item : menuItems) {
+            if (item.contains(point) && item.isBuyAble()) {
+                return Optional.of(item.getTower());
+            }
+        }
+
+        return Optional.empty();
     }
 }

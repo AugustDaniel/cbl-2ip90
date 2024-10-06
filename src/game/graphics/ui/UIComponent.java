@@ -5,6 +5,7 @@ import game.Updatable;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 
 public abstract class UIComponent implements Drawable, Updatable {
 
@@ -40,5 +41,9 @@ public abstract class UIComponent implements Drawable, Updatable {
 
     public void setPosition(Point2D position) {
         this.position = position;
+    }
+
+    public boolean contains(Point2D point) {
+        return new Rectangle2D.Double(point.getX(), point.getY(), width, height).contains(point);
     }
 }

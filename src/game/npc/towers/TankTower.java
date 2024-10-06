@@ -23,7 +23,7 @@ public class TankTower extends Tower{
     }
 
     @Override
-    public void update(List<? extends Npc> npcs) {
-
+    public Tower copyOf() {
+        return new TankTower(position);
     }
 }
