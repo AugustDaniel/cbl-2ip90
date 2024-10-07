@@ -51,7 +51,6 @@ public class TileMap implements Drawable {
         int counter = 0;
         for (int i = 0; i < mapHeight; i++) {
             for (int j = 0; j < mapWidt; j++) {
-                //TODO 128 so much fun
                 this.tileGrid[i][j] = Integer.parseInt(layerData[counter].trim()) - 1;
                 counter++;
             }
@@ -84,6 +83,7 @@ public class TileMap implements Drawable {
             return false;
         }
 
-        return (tileGrid[y][x] & 128) == 128;
+        //TODO
+        return true;
     }
 }
