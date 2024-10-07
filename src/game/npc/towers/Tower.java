@@ -1,6 +1,7 @@
 package game.npc.towers;
 
 import game.npc.Npc;
+import game.npc.mobs.Mob;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -9,17 +10,23 @@ import java.util.List;
 
 public abstract class Tower extends Npc implements Comparable<Tower> {
 
-    private String name;
-    private int damage;
-    private int range;
-    private int price;
+    protected String name;
+    protected int damage;
+    protected int range;
+    protected int price;
+    protected Mob targetMob;
+    protected int fireRate;
+    protected long timer;
 
-    public Tower(Point2D position, String name, int damage, int range, int price) {
+    public Tower(Point2D position, String name, int damage, int range, int price, int fireRate) {
         super(position);
         this.name = name;
         this.damage = damage;
         this.range = range;
         this.price = price;
+        this.targetMob = null;
+        this.fireRate = fireRate;
+        this.timer = System.currentTimeMillis();
     }
 
     public String getName() {
@@ -59,4 +66,34 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     }
 
     public abstract Tower copyOf();
+
+    @Override
+    public void update(List<? extends Npc> npcs) {
+        for (Npc npc : npcs) {
+            if (isInRange(npc.getPosition()) && npc instanceof Mob) {
+                targetMob = (Mob) npc;
+                break;
+            }
+        }
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - this.timer >= this.fireRate * 1000L) {
+            doDamage();
+            this.timer = System.currentTimeMillis();
+        }
+    }
+
+    public void doDamage() {
+        if (targetMob != null) {
+            if (!isInRange(targetMob.getPosition())) {
+                targetMob = null;
+                return;
+            }
+
+            targetMob.damage(getDamage());
+        }
+    }
+
+    public boolean isInRange(Point2D position) {
+        return this.position.distance(position) <= this.range;
+    }
 }

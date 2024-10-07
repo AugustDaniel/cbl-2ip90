@@ -1,11 +1,8 @@
 package game.npc.mobs;
 
-import game.npc.Npc;
-
 import javax.imageio.ImageIO;
 import java.awt.geom.Point2D;
 import java.io.File;
-import java.util.List;
 
 public class ZombieMob extends Mob{
 
@@ -20,10 +17,5 @@ public class ZombieMob extends Mob{
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void update(List<? extends Npc> npcs) {
-
     }
 }

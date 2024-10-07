@@ -36,7 +36,7 @@ public class PlayingScreen extends GameScreen implements MouseListener, MouseMot
         buyMenu.draw(g2d);
 
         game.getGameManager().getTowerList().forEach(t -> t.draw(g2d)); //TODO maybe make better
-
+        game.getGameManager().getMobList().forEach(t -> t.draw(g2d)); // TODO maybe combine with towers
         if (draggedTower != null) {
             draggedTower.draw(g2d);
         }

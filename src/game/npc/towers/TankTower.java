@@ -1,16 +1,15 @@
 package game.npc.towers;
 
-import game.npc.Npc;
 
 import javax.imageio.ImageIO;
 import java.awt.geom.Point2D;
 import java.io.File;
-import java.util.List;
 
 public class TankTower extends Tower{
 
+
     public TankTower(Point2D position) {
-        super(position, "Tank", 1, 10, 50);
+        super(position, "Tank", 1, 100, 50, 1);
     }
 
     @Override
@@ -20,11 +19,6 @@ public class TankTower extends Tower{
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void update(List<? extends Npc> npcs) {
-
     }
 
     @Override
