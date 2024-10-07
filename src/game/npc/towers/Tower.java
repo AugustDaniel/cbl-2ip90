@@ -49,11 +49,6 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     }
 
     @Override
-    public void update(List<? extends Npc> npcs) {
-
-    }
-
-    @Override
     public String toString() {
         return this.name;
     }

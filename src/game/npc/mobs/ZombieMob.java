@@ -1,4 +1,4 @@
-package game.npc.towers;
+package game.npc.mobs;
 
 import game.npc.Npc;
 
@@ -7,10 +7,10 @@ import java.awt.geom.Point2D;
 import java.io.File;
 import java.util.List;
 
-public class TankTower extends Tower{
+public class ZombieMob extends Mob{
 
-    public TankTower(Point2D position) {
-        super(position, "Tank", 1, 10, 50);
+    public ZombieMob(Point2D position) {
+        super(position, "Zombie", 10, 5, 5);
     }
 
     @Override
@@ -25,10 +25,5 @@ public class TankTower extends Tower{
     @Override
     public void update(List<? extends Npc> npcs) {
 
-    }
-
-    @Override
-    public Tower copyOf() {
-        return new TankTower(position);
     }
 }
