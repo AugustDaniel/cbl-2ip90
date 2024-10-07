@@ -9,19 +9,19 @@ import java.awt.geom.Point2D;
 public class BuyMenuItem extends UIComponent {
 
     private boolean isBuyAble;
-    private Tower tower;
+    private Tower item;
     private Point2D position;
 
     public BuyMenuItem(Tower tower, Point2D position, int width, int height) {
         super(width, height, position);
         this.isBuyAble = false;
-        this.tower = tower;
+        this.item = tower;
         this.position = position;
         init();
     }
 
     private void init() {
-        tower.setPosition(new Point2D.Double((position.getX() + width / 2.0), position.getY() + height / 2.0));
+        item.setPosition(new Point2D.Double((position.getX() + width / 2.0), position.getY() + height / 2.0));
     }
 
     public boolean isBuyAble() {
@@ -32,12 +32,12 @@ public class BuyMenuItem extends UIComponent {
         isBuyAble = buyAble;
     }
 
-    public Tower getTower() {
-        return tower;
+    public Tower getItem() {
+        return item;
     }
 
-    public void setTower(Tower tower) {
-        this.tower = tower;
+    public void setItem(Tower item) {
+        this.item = item;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class BuyMenuItem extends UIComponent {
         g.setColor(Color.black);
         g.drawRect((int) position.getX(), (int) position.getY(), width, height);
 
-        tower.draw(g);
+        item.draw(g);
 
         if (isBuyAble) {
             g.setColor(Color.green);
@@ -55,7 +55,7 @@ public class BuyMenuItem extends UIComponent {
             g.setColor(Color.red);
         }
 
-        g.drawString(String.valueOf(tower.getPrice()), (int) position.getX() + (width / 2) - 8, (int) (position.getY()  + height));
+        g.drawString(String.valueOf(item.getPrice()), (int) position.getX() + (width / 2) - 8, (int) (position.getY()  + height));
 
         g.setColor(Color.black);
     }

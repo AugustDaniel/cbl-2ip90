@@ -4,6 +4,7 @@ import game.Drawable;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.io.File;
 
 public class Map implements Drawable {
@@ -23,5 +24,9 @@ public class Map implements Drawable {
     @Override
     public void draw(Graphics2D g) {
         this.tileMap.draw(g);
+    }
+
+    public boolean isFree(Point2D point2D) {
+        return tileMap.isFree(point2D);
     }
 }

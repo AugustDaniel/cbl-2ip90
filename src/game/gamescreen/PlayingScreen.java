@@ -34,6 +34,12 @@ public class PlayingScreen extends GameScreen implements MouseListener, MouseMot
         Graphics2D g2d = (Graphics2D) g;
         map.draw(g2d);
         buyMenu.draw(g2d);
+
+        game.getGameManager().getTowerList().forEach(t -> t.draw(g2d)); //TODO maybe make better
+        
+        if (draggedTower != null) {
+            draggedTower.draw(g2d);
+        }
     }
 
     @Override
@@ -43,10 +49,24 @@ public class PlayingScreen extends GameScreen implements MouseListener, MouseMot
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        if (draggedTower != null) {
+            if (map.isFree(draggedTower.getPosition())) {
+                game.getGameManager().addTower(draggedTower);
+            }
+
+            draggedTower = null;
+        }
+
         if (buyMenu.contains(e.getPoint())) {
             Optional<Tower> towerOptional = buyMenu.getSelected(e.getPoint());
-
             towerOptional.ifPresent(tower -> draggedTower = tower.copyOf());
+        }
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        if (draggedTower != null) {
+            draggedTower.setPosition(e.getPoint());
         }
     }
 
@@ -73,12 +93,5 @@ public class PlayingScreen extends GameScreen implements MouseListener, MouseMot
     @Override
     public void mouseDragged(MouseEvent e) {
 
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-        if (draggedTower != null) {
-            draggedTower.setPosition(e.getPoint());
-        }
     }
 }

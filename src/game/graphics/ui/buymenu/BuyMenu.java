@@ -1,8 +1,6 @@
 package game.graphics.ui.buymenu;
 
-import game.Drawable;
 import game.GameManager;
-import game.Updatable;
 import game.graphics.ui.UIComponent;
 import game.npc.towers.Tower;
 
@@ -15,10 +13,11 @@ import java.util.Optional;
 
 public class BuyMenu extends UIComponent {
 
-    private final GameManager gameManager;
-    private List<BuyMenuItem> menuItems;
     private final int ITEM_WIDTH = 64;
     private final int ITEM_HEIGHT = 64;
+    private final int ITEM_SPACING = 10;
+    private final GameManager gameManager;
+    private List<BuyMenuItem> menuItems;
 
     public BuyMenu(GameManager gameManager, Point2D position, int width, int height) {
         super(width, height, position);
@@ -31,10 +30,10 @@ public class BuyMenu extends UIComponent {
     }
 
     private void init() {
-        int y = 10;
+        int y = ITEM_SPACING;
         for (Tower tower : gameManager.getBuyableTowers()) {
             this.menuItems.add(new BuyMenuItem(tower, new Point2D.Double(position.getX() + (width / 2.0) - (ITEM_WIDTH / 2.0), position.getY() + y), ITEM_WIDTH, ITEM_HEIGHT));
-            y += ITEM_HEIGHT + 10;
+            y += ITEM_HEIGHT + ITEM_SPACING;
         }
     }
 
@@ -53,14 +52,14 @@ public class BuyMenu extends UIComponent {
     @Override
     public void update() {
         for (BuyMenuItem item : menuItems) {
-            item.setBuyAble(item.getTower().getPrice() <= gameManager.getPlayerMoney());
+            item.setBuyAble(item.getItem().getPrice() <= gameManager.getPlayerMoney());
         }
     }
 
     public Optional<Tower> getSelected(Point2D point) {
         for (BuyMenuItem item : menuItems) {
             if (item.contains(point) && item.isBuyAble()) {
-                return Optional.of(item.getTower());
+                return Optional.of(item.getItem());
             }
         }
 

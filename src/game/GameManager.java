@@ -28,6 +28,7 @@ public class GameManager implements Updatable {
     }
 
     public void addTower(Tower tower) {
+        playerMoney -= tower.getPrice();
         this.towerList.add(tower);
     }
 

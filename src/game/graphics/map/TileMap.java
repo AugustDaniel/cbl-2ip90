@@ -3,6 +3,7 @@ package game.graphics.map;
 import game.Drawable;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.util.Optional;
 import java.util.Random;
@@ -25,7 +26,8 @@ public class TileMap implements Drawable {
 
         for (int i = 0; i < MAP_HEIGHT; i++) {
             for (int j = 0; j < MAP_WIDTH; j++) {
-                tileGrid[i][j] = random.nextInt(21);
+                //TODO 128 so much fun
+                tileGrid[i][j] = random.nextInt(21) | 128;
             }
         }
     }
@@ -34,7 +36,7 @@ public class TileMap implements Drawable {
     public void draw(Graphics2D g) {
         for (int y = 0; y < MAP_HEIGHT; y++) {
             for (int x = 0; x < MAP_WIDTH; x++) {
-                Optional<BufferedImage> imageOptional = tileSet.getTile(this.tileGrid[y][x]);
+                Optional<BufferedImage> imageOptional = tileSet.getTile(this.tileGrid[y][x] ^ 128);
 
                 if (imageOptional.isEmpty()) {
                     g.drawRect(x * tileSet.TILE_WIDTH, y * tileSet.TILE_HEIGHT, tileSet.TILE_WIDTH, tileSet.TILE_HEIGHT);
@@ -43,5 +45,19 @@ public class TileMap implements Drawable {
                 }
             }
         }
+    }
+
+    public boolean isFree(Point2D point) {
+        int x = (int) (point.getX() / tileSet.TILE_WIDTH);
+        int y = (int) (point.getY() / tileSet.TILE_HEIGHT);
+
+        System.out.println(x);
+        System.out.println(y);
+
+        if (x >= MAP_WIDTH || y >= MAP_HEIGHT) {
+            return false;
+        }
+
+        return (tileGrid[y][x] & 128) == 128;
     }
 }

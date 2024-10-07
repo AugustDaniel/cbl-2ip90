@@ -3,7 +3,6 @@ package game.graphics.ui;
 import game.Drawable;
 import game.Updatable;
 
-import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
@@ -44,6 +43,6 @@ public abstract class UIComponent implements Drawable, Updatable {
     }
 
     public boolean contains(Point2D point) {
-        return new Rectangle2D.Double(point.getX(), point.getY(), width, height).contains(point);
+        return new Rectangle2D.Double(position.getX(), position.getY(), width, height).contains(point);
     }
 }
