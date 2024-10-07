@@ -11,9 +11,9 @@ public class GameFrame extends JFrame {
         game.start();
         add(game);
         setResizable(false);
-        setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 }

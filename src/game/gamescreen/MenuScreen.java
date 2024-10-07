@@ -44,9 +44,6 @@ public class MenuScreen extends GameScreen {
         Dimension buttonSize = new Dimension(100, 25);
         for (JButton button : buttons) {
             button.setAlignmentX(Component.CENTER_ALIGNMENT);
-            button.setSize(buttonSize);
-            button.setMaximumSize(buttonSize);
-            button.setMinimumSize(buttonSize);
             button.setPreferredSize(buttonSize);
         }
 
@@ -54,18 +51,16 @@ public class MenuScreen extends GameScreen {
         add(settingsButton, constraints);
         add(quitButton, constraints);
 
-
-
         playButton.addActionListener(e -> {
             game.setState(GameState.PLAYING);
         });
 
         quitButton.addActionListener(e -> {
-
+            //TODO
         });
 
         settingsButton.addActionListener(e -> {
-
+            //TODO
         });
     }
 
