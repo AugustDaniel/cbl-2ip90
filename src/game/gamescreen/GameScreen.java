@@ -12,7 +12,7 @@ public abstract class GameScreen extends JPanel implements Updatable {
 
     public GameScreen(Game game) {
         this.game = game;
-        this.size = new Dimension(640, 640);
+        this.size = new Dimension(640, 512);
         setPanelSize();
     }
 

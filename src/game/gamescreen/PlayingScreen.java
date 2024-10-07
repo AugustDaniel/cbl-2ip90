@@ -1,7 +1,7 @@
 package game.gamescreen;
 
 import game.Game;
-import game.graphics.map.Map;
+import game.graphics.map.TileMap;
 import game.graphics.ui.buymenu.BuyMenu;
 import game.npc.towers.Tower;
 
@@ -14,14 +14,14 @@ import java.util.Optional;
 
 public class PlayingScreen extends GameScreen implements MouseListener, MouseMotionListener {
 
-    private Map map;
+    private TileMap map;
     private BuyMenu buyMenu;
     private final int BUY_MENU_WIDTH = 128;
     private Tower draggedTower;
 
     public PlayingScreen(Game game) {
         super(game);
-        this.map = new Map();
+        this.map = new TileMap();
         this.buyMenu = new BuyMenu(game.getGameManager(), new Point2D.Double(size.getWidth() - BUY_MENU_WIDTH, 0), BUY_MENU_WIDTH, size.height);
         this.draggedTower = null;
         addMouseMotionListener(this);
@@ -36,7 +36,7 @@ public class PlayingScreen extends GameScreen implements MouseListener, MouseMot
         buyMenu.draw(g2d);
 
         game.getGameManager().getTowerList().forEach(t -> t.draw(g2d)); //TODO maybe make better
-        
+
         if (draggedTower != null) {
             draggedTower.draw(g2d);
         }

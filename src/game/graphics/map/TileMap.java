@@ -2,59 +2,85 @@ package game.graphics.map;
 
 import game.Drawable;
 
+
+import org.w3c.dom.Element;
+
+import javax.imageio.ImageIO;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.Optional;
-import java.util.Random;
 
 public class TileMap implements Drawable {
 
     private TileSet tileSet;
-    private final int MAP_HEIGHT = 32;
-    private final int MAP_WIDTH = 32;
+    private int mapHeight = 32;
+    private int mapWidt = 32;
+    private int tileHeight;
+    private int tileWidth;
     private int[][] tileGrid;
+    private Element root;
 
-    public TileMap(TileSet tileSet) {
-        this.tileSet = tileSet;
+    public TileMap() {
         init();
     }
 
     private void init() {
-        tileGrid = new int[MAP_HEIGHT][MAP_WIDTH];
-        Random random = new Random();
+        try {
+            this.root = DocumentBuilderFactory.newDefaultInstance().newDocumentBuilder().parse(new File("res/map.tmx")).getDocumentElement();
+            this.tileHeight = Integer.parseInt(this.root.getAttribute("tileheight"));
+            this.tileWidth = Integer.parseInt(this.root.getAttribute("tilewidth"));
+            this.tileSet = new TileSet(ImageIO.read(new File("res/spriteatlas.png")), this.tileWidth, this.tileHeight);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        for (int i = 0; i < MAP_HEIGHT; i++) {
-            for (int j = 0; j < MAP_WIDTH; j++) {
+        this.mapHeight = Integer.parseInt(this.root.getAttribute("height"));
+        this.mapWidt = Integer.parseInt(this.root.getAttribute("width"));
+        tileGrid = new int[mapHeight][mapWidt];
+
+        String[] layerData = ((Element) this.root.getElementsByTagName("layer").item(0))
+                .getElementsByTagName("data")
+                .item(0)
+                .getTextContent()
+                .trim()
+                .split(",");
+
+        int counter = 0;
+        for (int i = 0; i < mapHeight; i++) {
+            for (int j = 0; j < mapWidt; j++) {
                 //TODO 128 so much fun
-                tileGrid[i][j] = random.nextInt(21) | 128;
+                this.tileGrid[i][j] = Integer.parseInt(layerData[counter].trim()) - 1;
+                counter++;
             }
         }
     }
 
     @Override
     public void draw(Graphics2D g) {
-        for (int y = 0; y < MAP_HEIGHT; y++) {
-            for (int x = 0; x < MAP_WIDTH; x++) {
-                Optional<BufferedImage> imageOptional = tileSet.getTile(this.tileGrid[y][x] ^ 128);
+        for (int y = 0; y < mapHeight; y++) {
+            for (int x = 0; x < mapWidt; x++) {
+                Optional<BufferedImage> imageOptional = tileSet.getTile(this.tileGrid[y][x]);
 
                 if (imageOptional.isEmpty()) {
-                    g.drawRect(x * tileSet.TILE_WIDTH, y * tileSet.TILE_HEIGHT, tileSet.TILE_WIDTH, tileSet.TILE_HEIGHT);
+                    g.drawRect(x * tileWidth, y * tileHeight, tileWidth, tileHeight);
                 } else {
-                    g.drawImage(imageOptional.get(), x * tileSet.TILE_WIDTH, y * tileSet.TILE_HEIGHT, null);
+                    g.drawImage(imageOptional.get(), x * tileWidth, y * tileHeight, null);
                 }
             }
         }
     }
 
     public boolean isFree(Point2D point) {
-        int x = (int) (point.getX() / tileSet.TILE_WIDTH);
-        int y = (int) (point.getY() / tileSet.TILE_HEIGHT);
+        int x = (int) (point.getX() / tileWidth);
+        int y = (int) (point.getY() / tileHeight);
 
         System.out.println(x);
         System.out.println(y);
 
-        if (x >= MAP_WIDTH || y >= MAP_HEIGHT) {
+        if (x >= mapWidt || y >= mapHeight) {
             return false;
         }
 

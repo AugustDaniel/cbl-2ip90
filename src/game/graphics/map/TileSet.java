@@ -8,21 +8,23 @@ import java.util.Optional;
 public class TileSet {
 
     private List<BufferedImage> tiles;
-    public final int TILE_HEIGHT = 32;
-    public final int TILE_WIDTH = 32;
+    public int tileHeight;
+    public int tileWidth;
     private BufferedImage image;
 
-    public TileSet(BufferedImage image) {
+    public TileSet(BufferedImage image, int width, int height) {
         this.image = image;
         this.tiles = new ArrayList<>();
+        this.tileHeight = height;
+        this.tileWidth = width;
         init();
     }
 
     private void init() {
         try {
-            for (int y = 0; y < image.getHeight() / TILE_HEIGHT; y++) {
-                for (int x = 0; x < image.getWidth() / TILE_WIDTH; x++) {
-                    tiles.add(image.getSubimage(x * 32, y * 32, TILE_WIDTH, TILE_HEIGHT));
+            for (int y = 0; y < image.getHeight() / tileHeight; y++) {
+                for (int x = 0; x < image.getWidth() / tileWidth; x++) {
+                    tiles.add(image.getSubimage(x * 32, y * 32, tileWidth, tileHeight));
                 }
             }
         } catch (Exception e) {
