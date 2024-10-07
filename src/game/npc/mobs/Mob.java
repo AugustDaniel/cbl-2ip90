@@ -27,11 +27,8 @@ public abstract class Mob extends Npc {
         this.healthBar = new HealthBar(1, 40,5, new Point2D.Double(position.getX() - image.getWidth() / 2.0, position.getY() - image.getHeight()));
     }
 
-    @Override
     public void draw(Graphics2D g) {
-        AffineTransform transform = g.getTransform();
-        transform.translate(position.getX() - image.getWidth() / 2.0, position.getY() - image.getHeight() / 2.0);
-        g.drawImage(this.image, transform, null);
+        g.drawImage(image, (int) (this.position.getX() - image.getWidth() / 2), (int) (position.getY()  - image.getHeight() /2), null);
         healthBar.draw(g);
     }
 

@@ -50,9 +50,7 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
 
     @Override
     public void draw(Graphics2D g) {
-        AffineTransform transform = g.getTransform();
-        transform.translate(position.getX() - image.getWidth() / 2.0, position.getY() - image.getHeight() / 2.0);
-        g.drawImage(this.image, transform, null);
+        g.drawImage(image, (int) (this.position.getX() - image.getWidth() / 2), (int) (position.getY()  - image.getHeight() /2), null);
     }
 
     @Override
