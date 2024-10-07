@@ -76,9 +76,6 @@ public class TileMap implements Drawable {
         int x = (int) (point.getX() / tileWidth);
         int y = (int) (point.getY() / tileHeight);
 
-        System.out.println(x);
-        System.out.println(y);
-
         if (x >= mapWidt || y >= mapHeight) {
             return false;
         }

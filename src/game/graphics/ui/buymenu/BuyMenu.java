@@ -47,6 +47,9 @@ public class BuyMenu extends UIComponent {
         for (BuyMenuItem item : menuItems) {
             item.draw(g);
         }
+
+        g.drawString("Health :" + gameManager.getPlayerHealth(), (int) position.getX() + ITEM_SPACING, (int) (position.getY() + height - ITEM_SPACING));
+        g.drawString("Money " + gameManager.getPlayerMoney(), (int) position.getX() + ITEM_SPACING, (int) (position.getY() + height - 2 * ITEM_SPACING));
     }
 
     @Override

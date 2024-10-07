@@ -38,11 +38,9 @@ public abstract class Mob extends Npc {
     @Override
     public void update(List<? extends Npc> npcs) {
         this.healthBar.setHealthPercentage(getHealthPercentage());
-        System.out.println(getHealthPercentage());
     }
 
     public void damage(int damage) {
-        System.out.println(getHealthPercentage());
         this.health -= damage;
     }
 
