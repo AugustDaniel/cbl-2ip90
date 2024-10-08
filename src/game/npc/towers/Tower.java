@@ -1,5 +1,6 @@
 package game.npc.towers;
 
+import game.GameManager;
 import game.graphics.ui.TowerMenu;
 import game.npc.Npc;
 import game.npc.mobs.Mob;
@@ -19,6 +20,7 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     protected int fireRate;
     protected long timer;
     protected boolean isClicked;
+    protected boolean isPlaced;
     protected TowerMenu towerMenu;
 
     public Tower(Point2D position, String name, int damage, int range, int price, int fireRate) {
@@ -30,6 +32,8 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
         this.targetMob = null;
         this.fireRate = fireRate;
         this.isClicked = false;
+        this.isPlaced = false;
+        this.towerMenu = new TowerMenu(null, this, 100, 100, position);
         this.timer = System.currentTimeMillis();
     }
 
@@ -54,11 +58,16 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
 
     @Override
     public void draw(Graphics2D g) {
-        g.drawImage(image, (int) (this.position.getX() - image.getWidth() / 2), (int) (position.getY()  - image.getHeight() /2), null);
-
         if (isClicked) {
-            towerMenu.draw(g);
+            if (isPlaced) {
+                towerMenu.draw(g);
+            }
+
+            g.setColor(new Color(0,0,0, 0.3f));
+            g.fillOval((int) (position.getX() - range), (int) (position.getY() - range), range * 2, range * 2);
         }
+
+        g.drawImage(image, (int) (this.position.getX() - image.getWidth() / 2), (int) (position.getY()  - image.getHeight() /2), null);
     }
 
     @Override
@@ -103,7 +112,20 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
         return this.position.distance(position) <= this.range;
     }
 
-    public void toggleClicked() {
+    public boolean toggleClicked() {
         this.isClicked = !isClicked;
+        return this.isClicked;
+    }
+
+    public void setClicked(boolean isClicked) {
+        this.isClicked = isClicked;
+    }
+
+    public void setPlaced(boolean isPlaced) {
+        this.isPlaced = isPlaced;
+    }
+
+    public TowerMenu getTowerMenu() {
+        return this.towerMenu;
     }
 }

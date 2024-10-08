@@ -4,15 +4,14 @@ import game.Game;
 import game.graphics.map.TileMap;
 import game.graphics.ui.buymenu.BuyMenu;
 import game.npc.towers.Tower;
+import game.util.DefaultMouseListener;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.awt.geom.Point2D;
 import java.util.Optional;
 
-public class PlayingScreen extends GameScreen implements MouseListener, MouseMotionListener {
+public class PlayingScreen extends GameScreen implements DefaultMouseListener {
 
     private TileMap map;
     private BuyMenu buyMenu;
@@ -35,6 +34,7 @@ public class PlayingScreen extends GameScreen implements MouseListener, MouseMot
         map.draw(g2d);
         buyMenu.draw(g2d);
 
+
         game.getGameManager().getTowerList().forEach(t -> t.draw(g2d)); //TODO maybe make better
         game.getGameManager().getMobList().forEach(t -> t.draw(g2d)); // TODO maybe combine with towers
         if (draggedTower != null) {
@@ -49,17 +49,38 @@ public class PlayingScreen extends GameScreen implements MouseListener, MouseMot
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        if (buyMenu.contains(e.getPoint())) {
+            if (draggedTower != null) {
+                draggedTower = null;
+            }
+
+            Optional<Tower> towerOptional = buyMenu.getSelected(e.getPoint());
+            towerOptional.ifPresent(tower -> {
+                draggedTower = tower.copyOf();
+                draggedTower.setClicked(true);
+            });
+            return;
+        }
+
         if (draggedTower != null) {
             if (map.isFree(draggedTower.getPosition())) {
                 game.getGameManager().addTower(draggedTower);
             }
 
             draggedTower = null;
+            return;
         }
 
-        if (buyMenu.contains(e.getPoint())) {
-            Optional<Tower> towerOptional = buyMenu.getSelected(e.getPoint());
-            towerOptional.ifPresent(tower -> draggedTower = tower.copyOf());
+        for (Tower tower : game.getGameManager().getTowerList()) {
+            if (tower.contains(e.getPoint())) {
+                if (tower.toggleClicked()) {
+                    addMouseListener(tower.getTowerMenu());
+                } else {
+                    removeMouseListener(tower.getTowerMenu());
+                }
+
+                return;
+            }
         }
     }
 
@@ -68,30 +89,5 @@ public class PlayingScreen extends GameScreen implements MouseListener, MouseMot
         if (draggedTower != null) {
             draggedTower.setPosition(e.getPoint());
         }
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-
     }
 }

@@ -1,7 +1,7 @@
 package game.graphics.ui;
 
-import game.Drawable;
-import game.Updatable;
+import game.util.Drawable;
+import game.util.Updatable;
 
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;

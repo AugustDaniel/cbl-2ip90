@@ -1,6 +1,6 @@
 package game.graphics.map;
 
-import game.Drawable;
+import game.util.Drawable;
 
 
 import org.w3c.dom.Element;

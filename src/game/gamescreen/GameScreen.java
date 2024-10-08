@@ -1,7 +1,7 @@
 package game.gamescreen;
 
 import game.Game;
-import game.Updatable;
+import game.util.Updatable;
 
 import javax.swing.*;
 import java.awt.*;

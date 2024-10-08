@@ -1,7 +1,6 @@
-package game;
+package game.util;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
 
 public interface Drawable {
 

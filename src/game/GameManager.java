@@ -4,6 +4,7 @@ import game.npc.mobs.Mob;
 import game.npc.mobs.ZombieMob;
 import game.npc.towers.TankTower;
 import game.npc.towers.Tower;
+import game.util.Updatable;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
@@ -31,11 +32,14 @@ public class GameManager implements Updatable {
     private void init() {
         this.buyableTowers.add(new TankTower(new Point2D.Double()));
         this.mobs.add(new ZombieMob(new Point2D.Double(100, 100)));
+        this.mobs.add(new ZombieMob(new Point2D.Double(300, 300)));
     }
 
     public void addTower(Tower tower) {
         playerMoney -= tower.getPrice();
         this.towerList.add(tower);
+        tower.setPlaced(true);
+        tower.setClicked(false);
     }
 
     public TreeSet<Tower> getBuyableTowers() {
