@@ -1,5 +1,6 @@
 package game.npc.towers;
 
+import game.graphics.ui.TowerMenu;
 import game.npc.Npc;
 import game.npc.mobs.Mob;
 
@@ -17,6 +18,8 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     protected Mob targetMob;
     protected int fireRate;
     protected long timer;
+    protected boolean isClicked;
+    protected TowerMenu towerMenu;
 
     public Tower(Point2D position, String name, int damage, int range, int price, int fireRate) {
         super(position);
@@ -26,6 +29,7 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
         this.price = price;
         this.targetMob = null;
         this.fireRate = fireRate;
+        this.isClicked = false;
         this.timer = System.currentTimeMillis();
     }
 
@@ -51,6 +55,10 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     @Override
     public void draw(Graphics2D g) {
         g.drawImage(image, (int) (this.position.getX() - image.getWidth() / 2), (int) (position.getY()  - image.getHeight() /2), null);
+
+        if (isClicked) {
+            towerMenu.draw(g);
+        }
     }
 
     @Override
@@ -93,5 +101,9 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
 
     public boolean isInRange(Point2D position) {
         return this.position.distance(position) <= this.range;
+    }
+
+    public void toggleClicked() {
+        this.isClicked = !isClicked;
     }
 }

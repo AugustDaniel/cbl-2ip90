@@ -58,6 +58,13 @@ public class GameManager implements Updatable {
         return this.mobs;
     }
 
+    public void sellTower(Tower tower) {
+        if (this.towerList.contains(tower)) {
+            this.towerList.remove(tower);
+            this.playerMoney -= tower.getPrice();
+        }
+    }
+
     @Override
     public void update() {
         for (Tower tower : towerList) {
