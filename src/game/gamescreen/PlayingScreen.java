@@ -49,30 +49,24 @@ public class PlayingScreen extends GameScreen implements DefaultMouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (buyMenu.contains(e.getPoint())) {
-            if (draggedTower != null) {
-                draggedTower = null;
-            }
+        Point2D pos = e.getPoint();
 
-            Optional<Tower> towerOptional = buyMenu.getSelected(e.getPoint());
-            towerOptional.ifPresent(tower -> {
-                draggedTower = tower.copyOf();
-                draggedTower.setClicked(true);
-            });
+        if (buyMenu.contains(pos)) {
+            buyMenuClicked(pos);
             return;
         }
 
         if (draggedTower != null) {
-            if (map.isFree(draggedTower.getPosition())) {
-                game.getGameManager().addTower(draggedTower);
-            }
-
-            draggedTower = null;
+            placeDraggedTower();
             return;
         }
 
+        checkTowers(pos);
+    }
+
+    private void checkTowers(Point2D position) {
         for (Tower tower : game.getGameManager().getTowerList()) {
-            if (tower.contains(e.getPoint())) {
+            if (tower.contains(position)) {
                 if (tower.toggleClicked()) {
                     addMouseListener(tower.getTowerMenu());
                 } else {
@@ -82,6 +76,26 @@ public class PlayingScreen extends GameScreen implements DefaultMouseListener {
                 return;
             }
         }
+    }
+
+    private void placeDraggedTower() {
+        if (map.isFree(draggedTower.getPosition())) {
+            game.getGameManager().addTower(draggedTower);
+        }
+
+        draggedTower = null;
+    }
+
+    private void buyMenuClicked(Point2D position) {
+        if (draggedTower != null) {
+            draggedTower = null;
+        }
+
+        Optional<Tower> towerOptional = buyMenu.getSelected(position);
+        towerOptional.ifPresent(tower -> {
+            draggedTower = tower.copyOf();
+            draggedTower.setClicked(true);
+        });
     }
 
     @Override

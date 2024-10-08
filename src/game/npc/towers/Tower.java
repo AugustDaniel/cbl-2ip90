@@ -8,6 +8,7 @@ import game.npc.mobs.Mob;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.util.List;
 
 public abstract class Tower extends Npc implements Comparable<Tower> {
@@ -33,7 +34,7 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
         this.fireRate = fireRate;
         this.isClicked = false;
         this.isPlaced = false;
-        this.towerMenu = new TowerMenu(null, this, 100, 100, position);
+        this.towerMenu = new TowerMenu(null, this, 50, 50, position);
         this.timer = System.currentTimeMillis();
     }
 
@@ -90,6 +91,9 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
                 break;
             }
         }
+
+        towerMenu.update();
+
         long currentTime = System.currentTimeMillis();
         if (currentTime - this.timer >= this.fireRate * 1000L) {
             doDamage();
@@ -127,5 +131,11 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
 
     public TowerMenu getTowerMenu() {
         return this.towerMenu;
+    }
+
+    @Override
+    public void setPosition(Point2D position) {
+        super.setPosition(position);
+        this.towerMenu.setPosition(position);
     }
 }

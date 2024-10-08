@@ -36,7 +36,7 @@ public abstract class Npc implements Drawable {
     }
 
     public boolean contains(Point2D point) {
-        Rectangle2D rectangle = new Rectangle2D.Double(point.getX(), point.getY(), image.getWidth(), image.getHeight());
+        Rectangle2D rectangle = new Rectangle2D.Double(position.getX(), position.getY(), image.getWidth(), image.getHeight());
         return rectangle.contains(point);
     }
 }
