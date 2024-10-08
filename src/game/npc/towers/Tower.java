@@ -41,6 +41,7 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -64,11 +65,12 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
                 towerMenu.draw(g);
             }
 
-            g.setColor(new Color(0,0,0, 0.3f));
+            g.setColor(new Color(0, 0, 0, 0.3f));
             g.fillOval((int) (position.getX() - range), (int) (position.getY() - range), range * 2, range * 2);
         }
 
-        g.drawImage(image, (int) (this.position.getX() - image.getWidth() / 2), (int) (position.getY()  - image.getHeight() /2), null);
+        g.drawImage(image, (int) (this.position.getX() - image.getWidth() / 2), (int) (position.getY() - image.getHeight() / 2), null);
+        g.setColor(Color.black);
     }
 
     @Override
