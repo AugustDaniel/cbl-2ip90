@@ -22,9 +22,8 @@ public class TowerMenu extends UIComponent implements DefaultMouseListener {
         this.tower = tower;
         this.buttons = new ArrayList<>();
 
-        Point2D.Double point1 = new Point2D.Double(position.getX() - width / 2.0, position.getY() - height - 15);
-        this.buttons.add(new GameButton(width / 2, height / 2, point1, "Upgrade", () -> System.out.println("cool")));
-        this.buttons.add(new GameButton(width / 2, height / 2, new Point2D.Double(position.getX(), position.getY() + height / 2.0), "Sell", () -> System.out.println("cool")));
+        this.buttons.add(new GameButton((int) (width * (2 / 3.0)), height / 2, new Point2D.Double(), "Upgrade", () -> System.out.println("cool")));
+        this.buttons.add(new GameButton((int) (width * (2 / 3.0)), height / 2, new Point2D.Double(), "Sell", () -> System.out.println("cool")));
     }
 
     @Override
@@ -52,5 +51,14 @@ public class TowerMenu extends UIComponent implements DefaultMouseListener {
                 button.callAction();
             }
         }
+    }
+
+    @Override
+    public void setPosition(Point2D position) {
+        super.setPosition(position);
+
+        int x = (int) (position.getX() - width / 2.0);
+        buttons.get(0).setPosition(new Point2D.Double(x, (int) (position.getY() - height - 15)));
+        buttons.get(1).setPosition(new Point2D.Double(x, (int) (position.getY() - height / 2.0 - 15)));
     }
 }

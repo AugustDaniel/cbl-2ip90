@@ -34,7 +34,7 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
         this.fireRate = fireRate;
         this.isClicked = false;
         this.isPlaced = false;
-        this.towerMenu = new TowerMenu(null, this, 50, 50, position);
+        this.towerMenu = new TowerMenu(null, this, 100, 50, position);
         this.timer = System.currentTimeMillis();
     }
 
