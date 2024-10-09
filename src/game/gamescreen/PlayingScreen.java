@@ -48,7 +48,7 @@ public class PlayingScreen extends GameScreen implements DefaultMouseListener {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mousePressed(MouseEvent e) {
         Point2D pos = e.getPoint();
 
         if (buyMenu.contains(pos)) {
