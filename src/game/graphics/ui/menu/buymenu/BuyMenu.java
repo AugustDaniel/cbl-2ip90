@@ -1,4 +1,4 @@
-package game.graphics.ui.buymenu;
+package game.graphics.ui.menu.buymenu;
 
 import game.GameManager;
 import game.graphics.ui.UIComponent;

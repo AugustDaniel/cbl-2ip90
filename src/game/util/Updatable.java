@@ -1,6 +1,8 @@
 package game.util;
 
-public interface Updatable {
+import java.io.Serializable;
+
+public interface Updatable extends Serializable {
 
     void update();
 }

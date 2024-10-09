@@ -1,5 +1,6 @@
 package game.npc.mobs;
 
+import game.GameManager;
 import game.graphics.ui.HealthBar;
 import game.npc.Npc;
 
@@ -16,8 +17,8 @@ public abstract class Mob extends Npc {
     protected int maxHealth;
     protected HealthBar healthBar;
 
-    public Mob(Point2D position, String name, int price, int damage, int health) {
-        super(position);
+    public Mob(GameManager manager, Point2D position, String name, int price, int damage, int health) {
+        super(position, manager);
         this.name = name;
         this.price = price;
         this.damage = damage;

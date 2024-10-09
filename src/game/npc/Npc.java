@@ -1,5 +1,6 @@
 package game.npc;
 
+import game.GameManager;
 import game.util.Drawable;
 
 import java.awt.geom.Point2D;
@@ -12,10 +13,12 @@ public abstract class Npc implements Drawable {
     protected Point2D position;
     protected BufferedImage image;
     protected double scale;
+    protected GameManager manager;
 
-    public Npc(Point2D position) {
+    public Npc(Point2D position, GameManager gameManager) {
         this.position = position;
         this.scale = 0;
+        this.manager = gameManager;
         initImage();
     }
 

@@ -1,14 +1,12 @@
 package game.npc.towers;
 
 import game.GameManager;
-import game.graphics.ui.TowerMenu;
+import game.graphics.ui.menu.TowerMenu;
 import game.npc.Npc;
 import game.npc.mobs.Mob;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.util.List;
 
 public abstract class Tower extends Npc implements Comparable<Tower> {
@@ -23,9 +21,10 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     protected boolean isClicked;
     protected boolean isPlaced;
     protected TowerMenu towerMenu;
+    protected int upgradePrice;
 
-    public Tower(Point2D position, String name, int damage, int range, int price, int fireRate) {
-        super(position);
+    public Tower(GameManager gameManager, Point2D position, String name, int damage, int range, int price, int fireRate) {
+        super(position, gameManager);
         this.name = name;
         this.damage = damage;
         this.range = range;
@@ -34,24 +33,13 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
         this.fireRate = fireRate;
         this.isClicked = false;
         this.isPlaced = false;
-        this.towerMenu = new TowerMenu(null, this, 100, 50, position);
+        this.towerMenu = new TowerMenu(gameManager, this, 100, 50, position);
         this.timer = System.currentTimeMillis();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        this.upgradePrice = price;
     }
 
     public int getDamage() {
         return damage;
-    }
-
-    public int getRange() {
-        return range;
     }
 
     public int getPrice() {
@@ -61,12 +49,12 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     @Override
     public void draw(Graphics2D g) {
         if (isClicked) {
+            g.setColor(new Color(0, 0, 0, 0.3f));
+            g.fillOval((int) (position.getX() - range), (int) (position.getY() - range), range * 2, range * 2);
+
             if (isPlaced) {
                 towerMenu.draw(g);
             }
-
-            g.setColor(new Color(0, 0, 0, 0.3f));
-            g.fillOval((int) (position.getX() - range), (int) (position.getY() - range), range * 2, range * 2);
         }
 
         g.drawImage(image, (int) (this.position.getX() - image.getWidth() / 2), (int) (position.getY() - image.getHeight() / 2), null);
@@ -135,9 +123,22 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
         return this.towerMenu;
     }
 
+    public void upgrade() {
+        this.upgradePrice += price;
+        this.damage += damage / 2;
+        this.range += range / 2;
+    }
+
+    public int getUpgradePrice() {
+        return upgradePrice;
+    }
+
     @Override
     public void setPosition(Point2D position) {
         super.setPosition(position);
+
+        if (this.towerMenu != null) {
         this.towerMenu.setPosition(position);
+        }
     }
 }

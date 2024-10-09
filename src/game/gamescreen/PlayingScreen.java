@@ -2,7 +2,8 @@ package game.gamescreen;
 
 import game.Game;
 import game.graphics.map.TileMap;
-import game.graphics.ui.buymenu.BuyMenu;
+import game.graphics.ui.menu.TowerMenu;
+import game.graphics.ui.menu.buymenu.BuyMenu;
 import game.npc.towers.Tower;
 import game.util.DefaultMouseListener;
 

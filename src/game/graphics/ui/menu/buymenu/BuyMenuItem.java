@@ -1,4 +1,4 @@
-package game.graphics.ui.buymenu;
+package game.graphics.ui.menu.buymenu;
 
 import game.graphics.ui.UIComponent;
 import game.npc.towers.Tower;

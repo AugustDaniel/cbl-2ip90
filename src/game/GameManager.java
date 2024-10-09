@@ -30,9 +30,9 @@ public class GameManager implements Updatable {
     }
 
     private void init() {
-        this.buyableTowers.add(new TankTower(new Point2D.Double()));
-        this.mobs.add(new ZombieMob(new Point2D.Double(100, 100)));
-        this.mobs.add(new ZombieMob(new Point2D.Double(300, 300)));
+        this.buyableTowers.add(new TankTower(new Point2D.Double(), this));
+        this.mobs.add(new ZombieMob(this, new Point2D.Double(100, 100)));
+        this.mobs.add(new ZombieMob(this, new Point2D.Double(300, 300)));
     }
 
     public void addTower(Tower tower) {
@@ -65,8 +65,17 @@ public class GameManager implements Updatable {
     public void sellTower(Tower tower) {
         if (this.towerList.contains(tower)) {
             this.towerList.remove(tower);
-            this.playerMoney -= tower.getPrice();
+            this.playerMoney += tower.getPrice();
         }
+    }
+
+    public void upgradeTower(Tower tower) {
+        if (tower.getUpgradePrice() > playerMoney) {
+            return;
+        }
+
+        playerMoney -= tower.getUpgradePrice();
+        tower.upgrade();
     }
 
     @Override
