@@ -1,7 +1,8 @@
-package game.gamescreen;
+package game.gamescreen.menuscreen;
 
 import game.Game;
 import game.GameState;
+import game.gamescreen.GameScreen;
 
 import javax.swing.*;
 import java.awt.*;

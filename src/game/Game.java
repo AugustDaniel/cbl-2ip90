@@ -1,6 +1,10 @@
 package game;
 
 import game.gamescreen.*;
+import game.gamescreen.menuscreen.MenuScreen;
+import game.gamescreen.menuscreen.ModeScreen;
+import game.gamescreen.menuscreen.MultiplayerScreen;
+import game.gamescreen.menuscreen.SettingsScreen;
 
 import javax.swing.*;
 import java.awt.*;

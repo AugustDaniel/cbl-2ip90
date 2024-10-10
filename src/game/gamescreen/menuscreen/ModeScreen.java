@@ -1,11 +1,9 @@
-package game.gamescreen;
+package game.gamescreen.menuscreen;
 
 import game.Game;
 import game.GameState;
 
 import javax.swing.*;
-import java.awt.*;
-import java.util.List;
 
 public class ModeScreen extends MenuScreen{
 
