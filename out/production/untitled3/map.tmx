@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="32">
  <tileset firstgid="1" source="MapTileSet.tsx"/>
- <objectgroup id="2" name="end">
+ <objectgroup id="2" name="start">
   <object id="26" x="2" y="258.75" width="30" height="29.25"/>
- </objectgroup>
- <objectgroup id="3" name="end">
-  <object id="22" x="482.083" y="258" width="28.4167" height="28.25"/>
  </objectgroup>
  <objectgroup id="4" name="lane">
   <object id="30" x="2" y="258" width="510" height="30"/>
  </objectgroup>
- <layer id="1" name="Tile Layer 1" width="16" height="16">
+ <objectgroup id="3" name="end">
+  <object id="22" x="482.083" y="258" width="28.4167" height="28.25"/>
+ </objectgroup>
+ <layer id="1" name="Tile Layer 1" width="16" height="16" visible="0">
   <data encoding="csv">
 19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,
 19,19,19,24,5,5,5,26,19,19,19,19,19,19,19,19,

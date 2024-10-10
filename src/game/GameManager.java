@@ -14,6 +14,8 @@ import java.util.TreeSet;
 
 public class GameManager implements Updatable {
 
+    private int DEFAULT_HEALTH = 100;
+    private int DEFAULT_MONEY = 100;
     private int playerMoney;
     private int playerHealth;
     private final List<Tower> towerList;
@@ -22,8 +24,8 @@ public class GameManager implements Updatable {
 
     public GameManager() {
         this.towerList = new ArrayList<>();
-        this.playerMoney = 100;
-        this.playerHealth = 100;
+        this.playerMoney = DEFAULT_MONEY;
+        this.playerHealth = DEFAULT_HEALTH;
         this.buyableTowers = new TreeSet<>();
         this.mobs = new ArrayList<>();
         init();
@@ -94,5 +96,16 @@ public class GameManager implements Updatable {
                 this.playerMoney += mob.getPrice();
             }
         }
+    }
+
+    public void endGame() {
+        clear();
+    }
+
+    private void clear() {
+        this.towerList.clear();
+        this.mobs.clear();
+        playerMoney = DEFAULT_MONEY;
+        playerHealth = DEFAULT_HEALTH;
     }
 }

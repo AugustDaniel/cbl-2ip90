@@ -1,7 +1,9 @@
 package game.gamescreen;
 
 import game.Game;
+import game.GameState;
 import game.graphics.map.TileMap;
+import game.graphics.ui.GameButton;
 import game.graphics.ui.menu.TowerMenu;
 import game.graphics.ui.menu.buymenu.BuyMenu;
 import game.npc.towers.Tower;
@@ -18,12 +20,14 @@ public class PlayingScreen extends GameScreen implements DefaultMouseListener {
     private BuyMenu buyMenu;
     private final int BUY_MENU_WIDTH = 128;
     private Tower draggedTower;
+    private GameButton quitButton;
 
     public PlayingScreen(Game game) {
         super(game);
         this.map = new TileMap();
         this.buyMenu = new BuyMenu(game.getGameManager(), new Point2D.Double(size.getWidth() - BUY_MENU_WIDTH, 0), BUY_MENU_WIDTH, size.height);
         this.draggedTower = null;
+        this.quitButton = new GameButton(50, 20, new Point2D.Double(1,1), "Quit", this::quit);
         addMouseMotionListener(this);
         addMouseListener(this);
     }
@@ -41,6 +45,8 @@ public class PlayingScreen extends GameScreen implements DefaultMouseListener {
         if (draggedTower != null) {
             draggedTower.draw(g2d);
         }
+
+        quitButton.draw(g2d);
     }
 
     @Override
@@ -63,6 +69,13 @@ public class PlayingScreen extends GameScreen implements DefaultMouseListener {
         }
 
         checkTowers(pos);
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (quitButton.contains(e.getPoint())) {
+            quitButton.callAction();
+        }
     }
 
     private void checkTowers(Point2D position) {
@@ -104,5 +117,10 @@ public class PlayingScreen extends GameScreen implements DefaultMouseListener {
         if (draggedTower != null) {
             draggedTower.setPosition(e.getPoint());
         }
+    }
+
+    private void quit() {
+        game.setState(GameState.MENU);
+        game.getGameManager().endGame();
     }
 }

@@ -30,7 +30,7 @@ public class GameButton extends UIComponent implements ActionCallback {
         g.setColor(Color.black);
         g.drawRect((int) position.getX(), (int) position.getY(), width, height);
         g.setColor(Color.black);
-        g.drawString(text, (int) position.getX() + 10, (int) position.getY() + height / 2);
+        g.drawString(text, (int) position.getX() + 10, (int) position.getY() + height / 2 + 5);
     }
 
     @Override
