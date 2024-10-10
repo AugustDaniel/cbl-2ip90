@@ -7,6 +7,7 @@ public class SettingsScreen extends MenuScreen {
 
     public SettingsScreen(Game game) {
         super(game);
+        init();
     }
 
     @Override

@@ -19,6 +19,9 @@ public class MenuScreen extends GameScreen {
         super(game);
         this.buttons = new ArrayList<>();
         constraints = new GridBagConstraints();
+        setLayout(new GridBagLayout());
+        constraints.gridx = 0;
+        constraints.insets = new Insets(2,0,2,0);
         init();
     }
 
@@ -31,12 +34,8 @@ public class MenuScreen extends GameScreen {
         g2d.fillRect(0,0, size.width, size.height);
     }
 
-    private void init() {
+    protected void init() {
         clear();
-        setLayout(new GridBagLayout());
-        constraints.gridx = 0;
-        constraints.insets = new Insets(2,0,2,0);
-
         JButton playButton = new JButton("Play");
         JButton settingsButton = new JButton("Settings");
         JButton quitButton = new JButton("Quit");

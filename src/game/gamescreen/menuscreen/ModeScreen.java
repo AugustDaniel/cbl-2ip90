@@ -12,7 +12,8 @@ public class ModeScreen extends MenuScreen{
         init();
     }
 
-    private void init() {
+    @Override
+    protected void init() {
         clear();
 
         JButton singlePlayerButton = new JButton("Single-player");
