@@ -11,11 +11,13 @@ import java.util.List;
 
 public class MenuScreen extends GameScreen {
 
-    private List<JButton> buttons;
+    protected List<JButton> buttons;
+    protected GridBagConstraints constraints;
 
     public MenuScreen(Game game) {
         super(game);
         this.buttons = new ArrayList<>();
+        constraints = new GridBagConstraints();
         init();
     }
 
@@ -29,43 +31,49 @@ public class MenuScreen extends GameScreen {
     }
 
     private void init() {
+        clear();
         setLayout(new GridBagLayout());
-        GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridx = 0;
         constraints.insets = new Insets(2,0,2,0);
 
         JButton playButton = new JButton("Play");
-        JButton quitButton = new JButton("Quit");
         JButton settingsButton = new JButton("Settings");
+        JButton quitButton = new JButton("Quit");
         buttons.add(playButton);
-        buttons.add(quitButton);
         buttons.add(settingsButton);
+        buttons.add(quitButton);
 
-        Dimension buttonSize = new Dimension(100, 25);
-        for (JButton button : buttons) {
-            button.setAlignmentX(Component.CENTER_ALIGNMENT);
-            button.setPreferredSize(buttonSize);
-        }
-
-        add(playButton, constraints);
-        add(settingsButton, constraints);
-        add(quitButton, constraints);
+        setUpButtons();
 
         playButton.addActionListener(e -> {
-            game.setState(GameState.PLAYING);
+            game.setState(GameState.MODE_SELECTION);
         });
 
         quitButton.addActionListener(e -> {
-            //TODO
+            System.exit(0);
         });
 
         settingsButton.addActionListener(e -> {
-            //TODO
+            game.setState(GameState.SETTINGS);
         });
     }
 
     @Override
     public void update() {
 
+    }
+
+    protected void setUpButtons() {
+        Dimension buttonSize = new Dimension(150, 25);
+        for (JButton button : buttons) {
+            button.setAlignmentX(Component.CENTER_ALIGNMENT);
+            button.setPreferredSize(buttonSize);
+            add(button, constraints);
+        }
+    }
+
+    protected void clear() {
+        buttons.clear();
+        removeAll();
     }
 }
