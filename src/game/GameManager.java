@@ -108,4 +108,12 @@ public class GameManager implements Updatable {
         playerMoney = DEFAULT_MONEY;
         playerHealth = DEFAULT_HEALTH;
     }
+
+    public void setDifficulty(GameDifficulty selectedItem) {
+        switch (selectedItem) {
+            case EASY -> this.playerHealth = DEFAULT_HEALTH * 2;
+            case NORMAL -> this.playerHealth = this.DEFAULT_HEALTH;
+            case HARD -> this.playerHealth = DEFAULT_HEALTH / 2;
+        }
+    }
 }
