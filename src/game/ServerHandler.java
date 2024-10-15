@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.List;
 
 public class ServerHandler {
 
@@ -64,5 +65,9 @@ public class ServerHandler {
         if (socket == null || input == null || output == null) {
             connect();
         }
+    }
+
+    public static List<String> getLobbies() {
+        return null;
     }
 }

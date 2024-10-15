@@ -35,12 +35,6 @@ public class Connection implements Runnable {
         output.reset();
     }
 
-    private void writeBoolean(boolean bool) throws IOException {
-        output.writeBoolean(bool);
-        output.flush();
-        output.reset();
-    }
-
     @Override
     public void run() {
         while (true) {
@@ -50,11 +44,16 @@ public class Connection implements Runnable {
                 switch (state) {
                     case HOST -> hostLobby();
                     case JOIN -> joinLobby();
+                    case SEARCHING -> sendLobbies();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void sendLobbies() throws IOException {
+        writeObject(Server.getLobbies());
     }
 
     private void joinLobby() {
