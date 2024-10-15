@@ -27,7 +27,42 @@ public class ServerHandler {
     }
 
     private static void disconnect() {
-
+        try {
+            if (socket != null && !socket.isClosed()) socket.close();
+            socket = null;
+            input = null;
+            output = null;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    private static Object readObject() throws IOException, ClassNotFoundException {
+        checkNullPointers();
+
+        try {
+            return input.readObject();
+        } catch (Exception e) {
+            disconnect();
+            throw e;
+        }
+    }
+
+    private static void writeObject(Object o) throws IOException {
+        checkNullPointers();
+
+        try {
+            output.writeObject(o);
+            output.flush();
+        } catch (Exception e) {
+            disconnect();
+            throw e;
+        }
+    }
+
+    private static void checkNullPointers() throws IOException {
+        if (socket == null || input == null || output == null) {
+            connect();
+        }
+    }
 }

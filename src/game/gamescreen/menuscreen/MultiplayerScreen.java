@@ -11,11 +11,11 @@ public class MultiplayerScreen extends MenuScreen {
 
     public MultiplayerScreen(Game game) {
         super(game);
-        listModel = new DefaultListModel<>();
     }
 
     @Override
     protected void init() {
+        listModel = new DefaultListModel<>();
         JButton hostButton = new JButton("Host new game");
         JButton joinButton = new JButton("Join");
         JButton refreshButton = new JButton("Refresh");
@@ -43,6 +43,8 @@ public class MultiplayerScreen extends MenuScreen {
         add(refreshButton);
         add(backButton);
         add(lobbyList);
+
+        listModel.add(0, "TODO");
     }
 
     private void refreshLobbies() {
