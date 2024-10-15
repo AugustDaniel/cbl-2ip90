@@ -61,7 +61,15 @@ public class Connection implements Runnable {
 
     }
 
-    private void hostLobby() {
+    private void hostLobby() throws IOException, ClassNotFoundException {
+        Server.addLobby((String) input.readObject());
+
+        while (true) {
+            if (input.readBoolean()) {
+                break;
+            }
+        }
+
 
     }
 }

@@ -36,4 +36,8 @@ public class Server {
     public static List<String> getLobbies() {
         return new ArrayList<>(lobbyList);
     }
+
+    public static void addLobby(String name) {
+        lobbyList.add(name);
+    }
 }
