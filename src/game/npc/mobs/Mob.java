@@ -46,12 +46,9 @@ public abstract class Mob extends Npc {
         
         double newAngle = Math.atan2(this.targetPosition.getY() - this.position.getY(), this.targetPosition.getX() - this.position.getX());
 
-        double xDif = speed * Math.cos(newAngle);
-        double yDif = speed * Math.sin(newAngle);
-
         this.position = new Point2D.Double(
-                this.position.getX() + xDif,
-                this.position.getY() + yDif
+                this.position.getX() + speed * Math.cos(newAngle),
+                this.position.getY() + speed * Math.sin(newAngle)
         );
     }
 
