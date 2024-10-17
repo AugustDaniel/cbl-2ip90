@@ -3,7 +3,6 @@ package game;
 import game.gamescreen.*;
 import game.gamescreen.menuscreen.MenuScreen;
 import game.gamescreen.menuscreen.ModeScreen;
-import game.gamescreen.menuscreen.MultiplayerScreen;
 import game.gamescreen.menuscreen.SettingsScreen;
 
 import javax.swing.*;
@@ -36,7 +35,6 @@ public class Game extends JPanel implements Runnable {
         statePanel.put(GameState.PLAYING, new PlayingScreen(this));
         statePanel.put(GameState.MODE_SELECTION, new ModeScreen(this));
         statePanel.put(GameState.SETTINGS, new SettingsScreen(this));
-        statePanel.put(GameState.MULTIPLAYER_LOBBY, new MultiplayerScreen(this));
 
         for (GameState gameState : statePanel.keySet()) {
             add(statePanel.get(gameState), gameState.name());

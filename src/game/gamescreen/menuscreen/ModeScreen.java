@@ -17,8 +17,7 @@ public class ModeScreen extends MenuScreen{
     protected void init() {
         clear();
 
-        JButton singlePlayerButton = new JButton("Single-player");
-        JButton multiPlayerPlayerButton = new JButton("Multi-player");
+        JButton singlePlayerButton = new JButton("Start");
         JButton backButton = new JButton("Back");
 
         JComboBox<GameDifficulty> difficultySelector = new JComboBox<>();
@@ -30,16 +29,10 @@ public class ModeScreen extends MenuScreen{
         add(difficultySelector, constraints);
 
         buttons.add(singlePlayerButton);
-        buttons.add(multiPlayerPlayerButton);
         buttons.add(backButton);
 
         singlePlayerButton.addActionListener(e -> {
             game.setState(GameState.PLAYING);
-            game.getGameManager().setDifficulty((GameDifficulty) difficultySelector.getSelectedItem());
-        });
-
-        multiPlayerPlayerButton.addActionListener(e -> {
-            game.setState(GameState.MULTIPLAYER_LOBBY);
             game.getGameManager().setDifficulty((GameDifficulty) difficultySelector.getSelectedItem());
         });
 
