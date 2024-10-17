@@ -59,6 +59,10 @@ public abstract class Mob extends Npc {
         return position.distance(targetPosition) <= 7 * speed / 8;
     }
 
+    public void setTargetPosition(Point2D targetPosition) {
+        this.targetPosition = targetPosition;
+    }
+
     public void damage(int damage) {
         this.health -= damage;
     }
