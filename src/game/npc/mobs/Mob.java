@@ -40,7 +40,7 @@ public abstract class Mob extends Npc {
     public void update(List<? extends Npc> npcs) {
         this.healthBar.setHealthPercentage(getHealthPercentage());
 
-        if (atTargetPosition()) {
+        if (isAtTargetPosition()) {
             return;
         }
         
@@ -50,9 +50,11 @@ public abstract class Mob extends Npc {
                 this.position.getX() + speed * Math.cos(newAngle),
                 this.position.getY() + speed * Math.sin(newAngle)
         );
+
+        healthBar.setPosition(new Point2D.Double(position.getX() - image.getWidth() / 2.0, position.getY() - image.getHeight()));
     }
 
-    private boolean atTargetPosition() {
+    public boolean isAtTargetPosition() {
         return position.distance(targetPosition) <= 7 * speed / 8;
     }
 

@@ -5,6 +5,7 @@ import game.npc.mobs.ZombieMob;
 import game.npc.towers.RoundTower;
 import game.npc.towers.TankTower;
 import game.npc.towers.Tower;
+import game.pathfinding.Pathfinding;
 import game.util.Updatable;
 
 import java.awt.geom.Point2D;
@@ -35,8 +36,7 @@ public class GameManager implements Updatable {
     private void init() {
         this.buyableTowers.add(new TankTower(new Point2D.Double(), this));
         this.buyableTowers.add(new RoundTower(new Point2D.Double(), this));
-        this.mobs.add(new ZombieMob(this, new Point2D.Double(100, 100)));
-        this.mobs.add(new ZombieMob(this, new Point2D.Double(300, 300)));
+        this.mobs.add(new ZombieMob(this));
     }
 
     public void addTower(Tower tower) {
@@ -96,6 +96,11 @@ public class GameManager implements Updatable {
             if (mob.isDead()) {
                 iterator.remove();
                 this.playerMoney += mob.getPrice();
+                return;
+            }
+
+            if (mob.isAtTargetPosition()) {
+//                mob.setTargetPosition(Pathfinding.path);
             }
         }
     }

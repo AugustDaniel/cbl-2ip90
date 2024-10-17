@@ -11,7 +11,7 @@ import java.nio.file.Path;
 
 public class ZombieMob extends Mob{
 
-    public ZombieMob(GameManager manager, Point2D position) {
+    public ZombieMob(GameManager manager) {
         super(manager, Pathfinding.getStartPoint(), Pathfinding.getEndPoint(),"Zombie", 10, 5, 5, 1.0);
     }
 
