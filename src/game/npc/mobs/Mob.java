@@ -40,6 +40,10 @@ public abstract class Mob extends Npc {
     public void update(List<? extends Npc> npcs) {
         this.healthBar.setHealthPercentage(getHealthPercentage());
 
+        if (atTargetPosition()) {
+            return;
+        }
+        
         double newAngle = Math.atan2(this.targetPosition.getY() - this.position.getY(), this.targetPosition.getX() - this.position.getX());
 
         double xDif = speed * Math.cos(newAngle);
@@ -49,6 +53,10 @@ public abstract class Mob extends Npc {
                 this.position.getX() + xDif,
                 this.position.getY() + yDif
         );
+    }
+
+    private boolean atTargetPosition() {
+        return position.distance(targetPosition) <= 7 * speed / 8;
     }
 
     public void damage(int damage) {
