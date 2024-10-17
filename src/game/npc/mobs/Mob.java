@@ -16,25 +16,39 @@ public abstract class Mob extends Npc {
     protected int health;
     protected int maxHealth;
     protected HealthBar healthBar;
+    protected Point2D targetPosition;
+    protected double speed;
 
-    public Mob(GameManager manager, Point2D position, String name, int price, int damage, int health) {
+    public Mob(GameManager manager, Point2D position, Point2D targetPosition, String name, int price, int damage, int health, double speed) {
         super(position, manager);
         this.name = name;
         this.price = price;
         this.damage = damage;
         this.health = health;
         this.maxHealth = health;
-        this.healthBar = new HealthBar(1, 40,5, new Point2D.Double(position.getX() - image.getWidth() / 2.0, position.getY() - image.getHeight()));
+        this.targetPosition = targetPosition;
+        this.speed = speed;
+        this.healthBar = new HealthBar(1, 40, 5, new Point2D.Double(position.getX() - image.getWidth() / 2.0, position.getY() - image.getHeight()));
     }
 
     public void draw(Graphics2D g) {
-        g.drawImage(image, (int) (this.position.getX() - image.getWidth() / 2), (int) (position.getY()  - image.getHeight() /2), null);
+        g.drawImage(image, (int) (this.position.getX() - image.getWidth() / 2), (int) (position.getY() - image.getHeight() / 2), null);
         healthBar.draw(g);
     }
 
     @Override
     public void update(List<? extends Npc> npcs) {
         this.healthBar.setHealthPercentage(getHealthPercentage());
+
+        double newAngle = Math.atan2(this.targetPosition.getY() - this.position.getY(), this.targetPosition.getX() - this.position.getX());
+
+        double xDif = speed * Math.cos(newAngle);
+        double yDif = speed * Math.sin(newAngle);
+
+        this.position = new Point2D.Double(
+                this.position.getX() + xDif,
+                this.position.getY() + yDif
+        );
     }
 
     public void damage(int damage) {
