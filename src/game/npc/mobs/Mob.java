@@ -3,6 +3,7 @@ package game.npc.mobs;
 import game.GameManager;
 import game.graphics.ui.HealthBar;
 import game.npc.Npc;
+import game.pathfinding.Vertex;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -18,8 +19,9 @@ public abstract class Mob extends Npc {
     protected HealthBar healthBar;
     protected Point2D targetPosition;
     protected double speed;
+    protected Vertex currentNode;
 
-    public Mob(GameManager manager, Point2D position, Point2D targetPosition, String name, int price, int damage, int health, double speed) {
+    public Mob(GameManager manager, Point2D position, Point2D targetPosition, String name, int price, int damage, int health, double speed, Vertex currentNode) {
         super(position, manager);
         this.name = name;
         this.price = price;
@@ -28,6 +30,7 @@ public abstract class Mob extends Npc {
         this.maxHealth = health;
         this.targetPosition = targetPosition;
         this.speed = speed;
+        this.currentNode = currentNode;
         this.healthBar = new HealthBar(1, 40, 5, new Point2D.Double(position.getX() - image.getWidth() / 2.0, position.getY() - image.getHeight()));
     }
 
@@ -40,7 +43,7 @@ public abstract class Mob extends Npc {
     public void update(List<? extends Npc> npcs) {
         this.healthBar.setHealthPercentage(getHealthPercentage());
 
-        if (isAtTargetPosition()) {
+        if (isAtTargetPosition() || targetPosition == null) {
             return;
         }
         

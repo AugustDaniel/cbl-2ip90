@@ -1,5 +1,6 @@
 package game.graphics.map;
 
+import game.pathfinding.Pathfinding;
 import game.util.Drawable;
 
 
@@ -17,7 +18,7 @@ public class TileMap implements Drawable {
 
     private TileSet tileSet;
     private int mapHeight = 32;
-    private int mapWidt = 32;
+    private int mapWidth = 32;
     private int tileHeight;
     private int tileWidth;
     private int[][] tileGrid;
@@ -38,8 +39,8 @@ public class TileMap implements Drawable {
         }
 
         this.mapHeight = Integer.parseInt(this.root.getAttribute("height"));
-        this.mapWidt = Integer.parseInt(this.root.getAttribute("width"));
-        tileGrid = new int[mapHeight][mapWidt];
+        this.mapWidth = Integer.parseInt(this.root.getAttribute("width"));
+        tileGrid = new int[mapHeight][mapWidth];
 
         String[] layerData = ((Element) this.root.getElementsByTagName("layer").item(0))
                 .getElementsByTagName("data")
@@ -48,9 +49,11 @@ public class TileMap implements Drawable {
                 .trim()
                 .split(",");
 
+        Pathfinding.initPathfinding(tileHeight, tileWidth, mapHeight, mapWidth, this.root.getElementsByTagName("objectgroup"));
+
         int counter = 0;
         for (int i = 0; i < mapHeight; i++) {
-            for (int j = 0; j < mapWidt; j++) {
+            for (int j = 0; j < mapWidth; j++) {
                 this.tileGrid[i][j] = Integer.parseInt(layerData[counter].trim()) - 1;
                 counter++;
             }
@@ -60,7 +63,7 @@ public class TileMap implements Drawable {
     @Override
     public void draw(Graphics2D g) {
         for (int y = 0; y < mapHeight; y++) {
-            for (int x = 0; x < mapWidt; x++) {
+            for (int x = 0; x < mapWidth; x++) {
                 Optional<BufferedImage> imageOptional = tileSet.getTile(this.tileGrid[y][x]);
 
                 if (imageOptional.isEmpty()) {
@@ -76,7 +79,7 @@ public class TileMap implements Drawable {
         int x = (int) (point.getX() / tileWidth);
         int y = (int) (point.getY() / tileHeight);
 
-        if (x >= mapWidt || y >= mapHeight) {
+        if (x >= mapWidth || y >= mapHeight) {
             return false;
         }
 
