@@ -1,13 +1,10 @@
 package game.npc.mobs;
 
 import game.GameManager;
-import game.graphics.ui.GameButton;
 import game.pathfinding.Pathfinding;
 
 import javax.imageio.ImageIO;
-import java.awt.geom.Point2D;
 import java.io.File;
-import java.nio.file.Path;
 
 public class ZombieMob extends Mob{
 
@@ -18,7 +15,7 @@ public class ZombieMob extends Mob{
     @Override
     protected void initImage() {
         try {
-            this.image = ImageIO.read(new File("res/pixel-tank.png"));
+            this.image = ImageIO.read(new File("res/Zombie_strip4.png")).getSubimage(0,0, 25, 32);
         } catch (Exception e) {
             e.printStackTrace();
         }
