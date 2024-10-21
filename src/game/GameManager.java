@@ -31,11 +31,15 @@ public class GameManager implements Updatable {
         this.playerHealth = DEFAULT_HEALTH;
         this.buyableTowers = new TreeSet<>();
         this.mobs = new ArrayList<>();
+        init();
+    }
+
+    private void init () {
+        this.buyableTowers.add(new TankTower(new Point2D.Double(), this));
+        this.buyableTowers.add(new RoundTower(new Point2D.Double(), this));
     }
 
     public void start() {
-        this.buyableTowers.add(new TankTower(new Point2D.Double(), this));
-        this.buyableTowers.add(new RoundTower(new Point2D.Double(), this));
         this.mobs.add(new ZombieMob(this));
     }
 
