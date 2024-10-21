@@ -1,5 +1,6 @@
 package game;
 
+import game.npc.mobs.GoblinMob;
 import game.npc.mobs.Mob;
 import game.npc.mobs.ZombieMob;
 import game.npc.towers.RoundTower;
@@ -40,7 +41,7 @@ public class GameManager implements Updatable {
     }
 
     public void start() {
-        this.mobs.add(new ZombieMob(this));
+        this.mobs.add(new GoblinMob(this));
     }
 
     public void addTower(Tower tower) {
