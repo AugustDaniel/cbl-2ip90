@@ -105,6 +105,11 @@ public class GameManager implements Updatable {
             }
 
             if (mob.isAtTargetPosition()) {
+                if (mob.getCurrentNode() == Pathfinding.endPoint) {
+                    this.playerHealth -= mob.getDamage();
+                    iterator.remove();
+                }
+
                 Vertex next = Pathfinding.path.get(mob.getCurrentNode());
 
                 if (next != null) {

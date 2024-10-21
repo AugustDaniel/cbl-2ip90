@@ -90,4 +90,8 @@ public abstract class Mob extends Npc {
         this.currentNode = vertex;
         setTargetPosition(vertex.getPosition());
     }
+
+    public int getDamage() {
+        return damage;
+    }
 }
