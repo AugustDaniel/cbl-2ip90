@@ -95,12 +95,4 @@ public class Pathfinding {
             }
         }
     }
-
-    public static Point2D getStartPoint() {
-        return startPoint.getPosition();
-    }
-
-    public static Point2D getEndPoint() {
-        return endPoint.getPosition();
-    }
 }
