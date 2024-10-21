@@ -40,7 +40,6 @@ public class Pathfinding {
 
         for (int i = 0; i < objects.getLength(); i++) {
             Element element = (Element) objects.item(i);
-
             Element content = (Element) ((Element) objects.item(i)).getElementsByTagName("object").item(0);
 
             if (element.getAttribute("name").equals("start")) {
@@ -48,20 +47,25 @@ public class Pathfinding {
             }
 
             if (element.getAttribute("name").equals("lane")) {
-                int xPos = Integer.parseInt(content.getAttribute("x"))  / tileWidth;
-                int yPos = Integer.parseInt(content.getAttribute("y"))  / tileHeight;
-                int height = Integer.parseInt(content.getAttribute("height"))  / tileHeight;
-                int width = Integer.parseInt(content.getAttribute("width"))  / tileWidth;
+                NodeList lanes = element.getElementsByTagName("object");
 
+                for (int j = 0; j < lanes.getLength(); j++) {
+                    content = (Element) lanes.item(j);
 
-                Vertex current = null;
-                Vertex previous = null;
-                for (int y = yPos; y < yPos + height; y++) {
-                    for (int x = xPos; x < xPos + width; x++) {
-                        current = graph.getVertex(x,y);
+                    int xPos = (int) (Double.parseDouble(content.getAttribute("x")) / tileWidth);
+                    int yPos = (int) (Double.parseDouble(content.getAttribute("y")) / tileHeight);
+                    int height = (int) (Double.parseDouble(content.getAttribute("height")) / tileHeight);
+                    int width = (int) (Double.parseDouble(content.getAttribute("width")) / tileWidth);
 
-                        addVertexAsNeighbour(current, previous);
-                        previous = current;
+                    Vertex current = null;
+                    Vertex previous = null;
+                    for (int y = yPos; y < yPos + height + 1; y++) {
+                        for (int x = xPos; x < xPos + width + 1; x++) {
+                            current = graph.getVertex(x, y);
+
+                            addVertexAsNeighbour(current, previous);
+                            previous = current;
+                        }
                     }
                 }
             }

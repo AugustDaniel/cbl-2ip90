@@ -12,7 +12,7 @@ import java.nio.file.Path;
 public class ZombieMob extends Mob{
 
     public ZombieMob(GameManager manager) {
-        super(manager,"Zombie", 10, 5, 5, 5.0, Pathfinding.startPoint);
+        super(manager,"Zombie", 10, 5, 5, 2.5, Pathfinding.startPoint);
     }
 
     @Override
