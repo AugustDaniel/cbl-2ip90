@@ -5,7 +5,7 @@
   <object id="26" x="2" y="258.75" width="30" height="29.25"/>
  </objectgroup>
  <objectgroup id="4" name="lane">
-  <object id="30" x="2" y="258" width="510" height="30"/>
+  <object id="30" x="2" y="258" width="510" height="32"/>
  </objectgroup>
  <objectgroup id="3" name="end">
   <object id="22" x="482.083" y="258" width="28.4167" height="28.25"/>

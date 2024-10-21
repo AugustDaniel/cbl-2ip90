@@ -6,6 +6,7 @@ import game.npc.towers.RoundTower;
 import game.npc.towers.TankTower;
 import game.npc.towers.Tower;
 import game.pathfinding.Pathfinding;
+import game.pathfinding.Vertex;
 import game.util.Updatable;
 
 import java.awt.geom.Point2D;
@@ -99,7 +100,11 @@ public class GameManager implements Updatable {
             }
 
             if (mob.isAtTargetPosition()) {
-//                mob.setTargetPosition(Pathfinding.path);
+                Vertex next = Pathfinding.path.get(mob.getCurrentNode());
+
+                if (next != null) {
+                    mob.setCurrentNode(Pathfinding.path.get(mob.getCurrentNode()));
+                }
             }
         }
     }

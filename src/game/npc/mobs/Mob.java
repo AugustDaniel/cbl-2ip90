@@ -21,15 +21,16 @@ public abstract class Mob extends Npc {
     protected double speed;
     protected Vertex currentNode;
 
-    public Mob(GameManager manager, Point2D position, Point2D targetPosition, String name, int price, int damage, int health, double speed, Vertex currentNode) {
-        super(position, manager);
+    public Mob(GameManager manager, String name, int price, int damage, int health, double speed, Vertex currentNode) {
+        super(currentNode.getPosition(), manager);
         this.name = name;
         this.price = price;
         this.damage = damage;
         this.health = health;
         this.maxHealth = health;
-        this.targetPosition = targetPosition;
+        this.targetPosition = currentNode.getPosition();
         this.speed = speed;
+        this.position = currentNode.getPosition();
         this.currentNode = currentNode;
         this.healthBar = new HealthBar(1, 40, 5, new Point2D.Double(position.getX() - image.getWidth() / 2.0, position.getY() - image.getHeight()));
     }
@@ -79,5 +80,14 @@ public abstract class Mob extends Npc {
 
     public boolean isDead() {
         return health <= 0;
+    }
+
+    public Vertex getCurrentNode() {
+        return currentNode;
+    }
+
+    public void setCurrentNode(Vertex vertex) {
+        this.currentNode = vertex;
+        setTargetPosition(vertex.getPosition());
     }
 }

@@ -56,8 +56,8 @@ public class Pathfinding {
 
                 Vertex current = null;
                 Vertex previous = null;
-                for (int y = yPos; y < height; y++) {
-                    for (int x = xPos; x < width; x++) {
+                for (int y = yPos; y < yPos + height; y++) {
+                    for (int x = xPos; x < xPos + width; x++) {
                         current = graph.getVertex(x,y);
 
                         addVertexAsNeighbour(current, previous);
@@ -77,7 +77,6 @@ public class Pathfinding {
     private static void addVertexAsNeighbour(Vertex current, Vertex toAdd) {
         if (toAdd != null && current != null) {
             current.addNeighbour(toAdd);
-
             if (!toAdd.getNeighbours().contains(current)) {
                 toAdd.addNeighbour(current);
             }
