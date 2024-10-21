@@ -3,9 +3,7 @@ package game.pathfinding;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import java.awt.*;
 import java.awt.geom.Point2D;
-import java.net.Inet4Address;
 import java.util.ArrayDeque;
 import java.util.HashMap;
 import java.util.Map;
@@ -50,20 +48,38 @@ public class Pathfinding {
             }
 
             if (element.getAttribute("name").equals("lane")) {
-                int xPos = Integer.parseInt(content.getAttribute("x"))  / 32;
-                int yPos = Integer.parseInt(content.getAttribute("y"))  / 32;
-                int height = Integer.parseInt(content.getAttribute("height"))  / 32;
-                int width = Integer.parseInt(content.getAttribute("width"))  / 32;
+                int xPos = Integer.parseInt(content.getAttribute("x"))  / tileWidth;
+                int yPos = Integer.parseInt(content.getAttribute("y"))  / tileHeight;
+                int height = Integer.parseInt(content.getAttribute("height"))  / tileHeight;
+                int width = Integer.parseInt(content.getAttribute("width"))  / tileWidth;
 
+
+                Vertex current = null;
+                Vertex previous = null;
                 for (int y = yPos; y < height; y++) {
                     for (int x = xPos; x < width; x++) {
+                        current = graph.getVertex(x,y);
 
+                        addVertexAsNeighbour(current, previous);
+                        previous = current;
                     }
                 }
             }
 
             if (element.getAttribute("name").equals("end")) {
                 endPoint = graph.getVertex((int) (Double.parseDouble(content.getAttribute("x")) / 32), (int) (Double.parseDouble(content.getAttribute("y")) / 32));
+            }
+        }
+
+        createPath();
+    }
+
+    private static void addVertexAsNeighbour(Vertex current, Vertex toAdd) {
+        if (toAdd != null && current != null) {
+            current.addNeighbour(toAdd);
+
+            if (!toAdd.getNeighbours().contains(current)) {
+                toAdd.addNeighbour(current);
             }
         }
     }
@@ -75,17 +91,17 @@ public class Pathfinding {
             for (int j = 0; j < mapWidth; j++) {
                 graph.setVertex(
                         new Vertex(new Point2D.Double(j * 32, i * 32)),
-                        i,
-                        j);
+                        j,
+                        i);
             }
         }
     }
 
     public static Point2D getStartPoint() {
-        return new Point2D.Double(0,0);
+        return startPoint.getPosition();
     }
 
     public static Point2D getEndPoint() {
-        return new Point2D.Double(200, 100);
+        return endPoint.getPosition();
     }
 }

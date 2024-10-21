@@ -30,6 +30,7 @@ public class PlayingScreen extends GameScreen implements DefaultMouseListener {
         this.quitButton = new GameButton(50, 20, new Point2D.Double(1,1), "Quit", this::quit);
         addMouseMotionListener(this);
         addMouseListener(this);
+        game.getGameManager().start();
     }
 
     @Override
