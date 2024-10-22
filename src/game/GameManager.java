@@ -25,6 +25,7 @@ public class GameManager implements Updatable {
     private final List<Tower> towerList;
     private final TreeSet<Tower> buyableTowers;
     private final List<Mob> mobs;
+    private boolean soundOn;
 
     public GameManager() {
         this.towerList = new ArrayList<>();
@@ -32,6 +33,7 @@ public class GameManager implements Updatable {
         this.playerHealth = DEFAULT_HEALTH;
         this.buyableTowers = new TreeSet<>();
         this.mobs = new ArrayList<>();
+        this.soundOn = true;
         init();
     }
 
@@ -136,5 +138,13 @@ public class GameManager implements Updatable {
             case NORMAL -> this.playerHealth = this.DEFAULT_HEALTH;
             case HARD -> this.playerHealth = DEFAULT_HEALTH / 2;
         }
+    }
+
+    public void toggleSoundOn() {
+        this.soundOn = !this.soundOn;
+    }
+
+    public boolean isSoundOn() {
+        return soundOn;
     }
 }

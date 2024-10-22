@@ -107,7 +107,9 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     }
 
     private void playShootSound() {
-        SoundPlayer.playSound(new File("res/Gun+1.wav"));
+        if (manager.isSoundOn()) {
+            SoundPlayer.playSound(new File("res/Gun+1.wav"));
+        }
     }
 
     public boolean isInRange(Point2D position) {
