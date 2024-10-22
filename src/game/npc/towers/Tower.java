@@ -4,9 +4,12 @@ import game.GameManager;
 import game.graphics.ui.menu.TowerMenu;
 import game.npc.Npc;
 import game.npc.mobs.Mob;
+import game.util.SoundPlayer;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.io.File;
+import java.net.URL;
 import java.util.List;
 
 public abstract class Tower extends Npc implements Comparable<Tower> {
@@ -98,8 +101,13 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
                 return;
             }
 
+            playShootSound();
             targetMob.damage(getDamage());
         }
+    }
+
+    private void playShootSound() {
+        SoundPlayer.playSound(new File("res/Gun+1.wav"));
     }
 
     public boolean isInRange(Point2D position) {
