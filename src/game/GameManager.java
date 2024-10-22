@@ -20,7 +20,7 @@ import java.util.TreeSet;
 
 public class GameManager implements Updatable {
 
-    private final int DEFAULT_HEALTH = 1;
+    private final int DEFAULT_HEALTH = 100;
     private final int DEFAULT_MONEY = 100;
     private int playerMoney;
     private int playerHealth;
