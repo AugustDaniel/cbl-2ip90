@@ -99,4 +99,9 @@ public class Pathfinding {
             }
         }
     }
+
+    public static boolean isLane(int x, int y) {
+        Vertex v = graph.getVertex(x, y);
+        return v == null || !v.getNeighbours().isEmpty();
+    }
 }

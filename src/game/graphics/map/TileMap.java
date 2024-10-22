@@ -12,6 +12,7 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.nio.file.Path;
 import java.util.Optional;
 
 public class TileMap implements Drawable {
@@ -79,11 +80,6 @@ public class TileMap implements Drawable {
         int x = (int) (point.getX() / tileWidth);
         int y = (int) (point.getY() / tileHeight);
 
-        if (x >= mapWidth || y >= mapHeight) {
-            return false;
-        }
-
-        //TODO
-        return true;
+        return x < mapWidth && y < mapHeight && !Pathfinding.isLane(x, y);
     }
 }
