@@ -18,7 +18,7 @@ public class Game extends JPanel implements Runnable {
 
     public Game() {
         this.state = GameState.MENU;
-        this.gameManager = new GameManager();
+        this.gameManager = new GameManager(this);
         this.statePanel = new EnumMap<>(GameState.class);
         this.cardLayout = new CardLayout();
         init();

@@ -10,6 +10,8 @@ import game.pathfinding.Pathfinding;
 import game.pathfinding.Vertex;
 import game.util.Updatable;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -18,7 +20,7 @@ import java.util.TreeSet;
 
 public class GameManager implements Updatable {
 
-    private final int DEFAULT_HEALTH = 100;
+    private final int DEFAULT_HEALTH = 1;
     private final int DEFAULT_MONEY = 100;
     private int playerMoney;
     private int playerHealth;
@@ -26,14 +28,16 @@ public class GameManager implements Updatable {
     private final TreeSet<Tower> buyableTowers;
     private final List<Mob> mobs;
     private boolean soundOn;
+    private Game game;
 
-    public GameManager() {
+    public GameManager(Game game) {
         this.towerList = new ArrayList<>();
         this.playerMoney = DEFAULT_MONEY;
         this.playerHealth = DEFAULT_HEALTH;
         this.buyableTowers = new TreeSet<>();
         this.mobs = new ArrayList<>();
         this.soundOn = true;
+        this.game = game;
         init();
     }
 
@@ -110,6 +114,7 @@ public class GameManager implements Updatable {
                 if (mob.getCurrentNode() == Pathfinding.endPoint) {
                     this.playerHealth -= mob.getDamage();
                     iterator.remove();
+                    checkGameOver();
                 }
 
                 Vertex next = Pathfinding.path.get(mob.getCurrentNode());
@@ -118,6 +123,13 @@ public class GameManager implements Updatable {
                     mob.setCurrentNode(Pathfinding.path.get(mob.getCurrentNode()));
                 }
             }
+        }
+    }
+
+    private void checkGameOver() {
+        if (this.playerHealth <= 0) {
+            endGame();
+            game.setState(GameState.MENU);
         }
     }
 
