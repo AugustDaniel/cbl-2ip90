@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.EnumMap;
 
+
 public class Game extends JPanel implements Runnable {
     private GameState state;
     public Thread thread;
