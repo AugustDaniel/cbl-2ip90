@@ -10,7 +10,7 @@ import java.awt.geom.Point2D;
 import java.util.List;
 
 /**
- * Mob class used as NPC.
+ * Abstract mob clas.
  * Has a current Vertex for pathfinding and other values needed to play the game.
  * A mob also has a health bar.
  */
