@@ -2,7 +2,6 @@ package game;
 
 import game.npc.mobs.GoblinMob;
 import game.npc.mobs.Mob;
-import game.npc.mobs.ZombieMob;
 import game.npc.towers.RoundTower;
 import game.npc.towers.TankTower;
 import game.npc.towers.Tower;
@@ -10,8 +9,6 @@ import game.pathfinding.Pathfinding;
 import game.pathfinding.Vertex;
 import game.util.Updatable;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -111,16 +108,16 @@ public class GameManager implements Updatable {
             }
 
             if (mob.isAtTargetPosition()) {
-                if (mob.getCurrentNode() == Pathfinding.endPoint) {
+                if (mob.getCurrentVertex() == Pathfinding.endPoint) {
                     this.playerHealth -= mob.getDamage();
                     iterator.remove();
                     checkGameOver();
                 }
 
-                Vertex next = Pathfinding.path.get(mob.getCurrentNode());
+                Vertex next = Pathfinding.path.get(mob.getCurrentVertex());
 
                 if (next != null) {
-                    mob.setCurrentNode(Pathfinding.path.get(mob.getCurrentNode()));
+                    mob.setCurrentVertex(Pathfinding.path.get(mob.getCurrentVertex()));
                 }
             }
         }

@@ -6,8 +6,15 @@ import game.pathfinding.Pathfinding;
 import javax.imageio.ImageIO;
 import java.io.File;
 
+/**
+ * Zombie mob with set values for all the parameters.
+ */
 public class ZombieMob extends Mob{
 
+    /**
+     * Constructor ZombieMob
+     * @param manager manager object
+     */
     public ZombieMob(GameManager manager) {
         super(manager,"Zombie", 10, 5, 5, 2.5, Pathfinding.startPoint);
     }
