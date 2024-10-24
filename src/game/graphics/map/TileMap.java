@@ -12,9 +12,13 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.nio.file.Path;
 import java.util.Optional;
 
+/**
+ * This object will initialize the tile map from an XML file.
+ * It first creates a tile set and then fills the tile map with these tiles.
+ * Will also initialize the pathfinding in the map.
+ */
 public class TileMap implements Drawable {
 
     private TileSet tileSet;
@@ -25,6 +29,9 @@ public class TileMap implements Drawable {
     private int[][] tileGrid;
     private Element root;
 
+    /**
+     * Constructor TileMap
+     */
     public TileMap() {
         init();
     }
@@ -61,6 +68,10 @@ public class TileMap implements Drawable {
         }
     }
 
+    /**
+     * Draws all the tiles in the tileMap
+     * @param g graphics object
+     */
     @Override
     public void draw(Graphics2D g) {
         for (int y = 0; y < mapHeight; y++) {
@@ -76,6 +87,12 @@ public class TileMap implements Drawable {
         }
     }
 
+    /**
+     * checks whether a point is inside the map and is a valid location.
+     * It is a valid location if it is not inside the mob lane.
+     * @param point point to check
+     * @return true when free false when not
+     */
     public boolean isFree(Point2D point) {
         int x = (int) (point.getX() / tileWidth);
         int y = (int) (point.getY() / tileHeight);

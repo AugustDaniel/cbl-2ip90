@@ -100,6 +100,12 @@ public class Pathfinding {
         }
     }
 
+    /**
+     * Checks whether a vertex does not have any neighbours
+     * @param x x
+     * @param y y
+     * @return true if the vertex has neighbours false when not
+     */
     public static boolean isLane(int x, int y) {
         Vertex v = graph.getVertex(x, y);
         return v == null || !v.getNeighbours().isEmpty();

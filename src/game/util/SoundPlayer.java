@@ -1,13 +1,21 @@
 package game.util;
 
-import javax.print.attribute.standard.Media;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
 
-public class SoundPlayer {
+/**
+ * Utility class used to play a sound.
+ * Because of Java API limitations only supports .WAV files.
+ */
+public final class SoundPlayer {
 
+    /**
+     * Play a sound from a file.
+     * File should have .WAV extension.
+     * @param file file to play sound from
+     */
     public static void playSound(File file) {
         try {
             Clip clip = AudioSystem.getClip();

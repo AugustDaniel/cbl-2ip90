@@ -2,12 +2,21 @@ package game.gamescreen.menuscreen;
 
 import game.Game;
 import game.GameState;
-import game.gamescreen.GameScreen;
 
 import javax.swing.*;
 
+/**
+ * SettingScreen used as a menu screen.
+ * Add the buttons used in the menu to the buttons ArrayList to initialise them
+ * and add them to the menu.
+ * By default, the buttons are centered in the middle.
+ */
 public class SettingsScreen extends MenuScreen {
 
+    /**
+     * Constructor SettingsScreen
+     * @param game game object
+     */
     public SettingsScreen(Game game) {
         super(game);
         init();
@@ -36,6 +45,9 @@ public class SettingsScreen extends MenuScreen {
         setUpButtons();
     }
 
+    /**
+     * Update does nothing
+     */
     @Override
     public void update() {
 

@@ -6,10 +6,18 @@ import game.util.Updatable;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Abstract class that extends JPanel.
+ * Can be used to create a screen in the game with the right dimensions.
+ */
 public abstract class GameScreen extends JPanel implements Updatable {
     protected Dimension size;
     protected final Game game;
 
+    /**
+     * Constructor GameScreen
+     * @param game game object
+     */
     public GameScreen(Game game) {
         this.game = game;
         this.size = new Dimension(640, 512);

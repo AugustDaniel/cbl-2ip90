@@ -6,8 +6,18 @@ import game.GameState;
 
 import javax.swing.*;
 
+/**
+ * ModeScreen used as a menu screen.
+ * Add the buttons used in the menu to the buttons ArrayList to initialise them
+ * and add them to the menu.
+ * By default, the buttons are centered in the middle.
+ */
 public class ModeScreen extends MenuScreen{
 
+    /**
+     * Constructor for ModeScreen.
+     * @param game game object
+     */
     public ModeScreen(Game game) {
         super(game);
         init();
@@ -43,6 +53,9 @@ public class ModeScreen extends MenuScreen{
         setUpButtons();
     }
 
+    /**
+     * update does nothing
+     */
     @Override
     public void update() {
 

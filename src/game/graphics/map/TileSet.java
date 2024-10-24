@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Stores the image for the tile set and the sub images for the tiles.
+ * Tiles are stored in an arraylist and the index is used as the id.
+ */
 public class TileSet {
 
     private List<BufferedImage> tiles;
@@ -12,6 +16,12 @@ public class TileSet {
     public int tileWidth;
     private BufferedImage image;
 
+    /**
+     * constructor TileSet
+     * @param image complete tileSet image
+     * @param width width of single tile
+     * @param height height of single tile
+     */
     public TileSet(BufferedImage image, int width, int height) {
         this.image = image;
         this.tiles = new ArrayList<>();
@@ -32,6 +42,11 @@ public class TileSet {
         }
     }
 
+    /**
+     * Returns an optional with the tile corresponding to the id.
+     * @param id id of the tile
+     * @return optional with the sub image of the tile
+     */
     public Optional<BufferedImage> getTile(int id) {
         if (id > tiles.size()) {
             return Optional.empty();

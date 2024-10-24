@@ -36,10 +36,6 @@ public class BuyMenuItem extends UIComponent {
         return item;
     }
 
-    public void setItem(Tower item) {
-        this.item = item;
-    }
-
     @Override
     public void draw(Graphics2D g) {
         g.setColor(Color.white);

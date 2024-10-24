@@ -4,7 +4,6 @@ import game.Game;
 import game.GameState;
 import game.graphics.map.TileMap;
 import game.graphics.ui.GameButton;
-import game.graphics.ui.menu.TowerMenu;
 import game.graphics.ui.menu.buymenu.BuyMenu;
 import game.npc.towers.Tower;
 import game.util.DefaultMouseListener;
@@ -14,6 +13,10 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 import java.util.Optional;
 
+/**
+ * PlayingScreen used as a GameScreen.
+ * This screen will display the gameplay of the game and also detect input from the player.
+ */
 public class PlayingScreen extends GameScreen implements DefaultMouseListener {
 
     private TileMap map;
@@ -22,6 +25,10 @@ public class PlayingScreen extends GameScreen implements DefaultMouseListener {
     private Tower draggedTower;
     private GameButton quitButton;
 
+    /**
+     * Constructor PlayingScreen
+     * @param game game object
+     */
     public PlayingScreen(Game game) {
         super(game);
         this.map = new TileMap();
@@ -34,7 +41,7 @@ public class PlayingScreen extends GameScreen implements DefaultMouseListener {
     }
 
     @Override
-    public void paintComponent(Graphics g) {
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         map.draw(g2d);
@@ -50,11 +57,19 @@ public class PlayingScreen extends GameScreen implements DefaultMouseListener {
         quitButton.draw(g2d);
     }
 
+    /**
+     * updates the buyMenu
+     */
     @Override
     public void update() {
         buyMenu.update();
     }
 
+    /**
+     * Called whenever a mouse is pressed.
+     * Will either call method for the buyMenu, placing of the tower, or detect a tower click.
+     * @param e the event to be processed
+     */
     @Override
     public void mousePressed(MouseEvent e) {
         Point2D pos = e.getPoint();
@@ -72,6 +87,11 @@ public class PlayingScreen extends GameScreen implements DefaultMouseListener {
         checkTowers(pos);
     }
 
+    /**
+     * Called whenever the mouse is clicked
+     * Used to detect whether the quit button is clicked.
+     * @param e the event to be processed
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         if (quitButton.contains(e.getPoint())) {
@@ -113,6 +133,11 @@ public class PlayingScreen extends GameScreen implements DefaultMouseListener {
         });
     }
 
+    /**
+     * Called whenever the mouse is moved.
+     * Will make it so the dragged tower follows the mouse.
+     * @param e the event to be processed
+     */
     @Override
     public void mouseMoved(MouseEvent e) {
         if (draggedTower != null) {

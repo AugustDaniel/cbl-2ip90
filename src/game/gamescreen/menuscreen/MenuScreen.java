@@ -10,11 +10,21 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * GamesScreen used as a menu screen.
+ * Add the buttons used in the menu to the buttons ArrayList to initialise them
+ * and add them to the menu.
+ * By default, the buttons are centered in the middle.
+ */
 public class MenuScreen extends GameScreen {
 
     protected List<JButton> buttons;
     protected GridBagConstraints constraints;
 
+    /**
+     * MenuScreen constructor
+     * @param game game object
+     */
     public MenuScreen(Game game) {
         super(game);
         this.buttons = new ArrayList<>();
@@ -58,6 +68,10 @@ public class MenuScreen extends GameScreen {
         });
     }
 
+    /**
+     * Update.
+     * Can be overridden by subclasses
+     */
     @Override
     public void update() {
 

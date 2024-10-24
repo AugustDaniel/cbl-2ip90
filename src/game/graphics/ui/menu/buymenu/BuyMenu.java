@@ -11,6 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * BuyMenu used as a UIComponent.
+ * Contains the buyAble towers as menu items and also displays
+ * the health and money of the player.
+ */
 public class BuyMenu extends UIComponent {
 
     private final int ITEM_WIDTH = 64;
@@ -19,6 +24,13 @@ public class BuyMenu extends UIComponent {
     private final GameManager gameManager;
     private List<BuyMenuItem> menuItems;
 
+    /**
+     * Constructor BuyMenu
+     * @param gameManager gameManager object
+     * @param position position of the upper left corner
+     * @param width width of the menu
+     * @param height height of the menu
+     */
     public BuyMenu(GameManager gameManager, Point2D position, int width, int height) {
         super(width, height, position);
         this.gameManager = gameManager;
@@ -37,6 +49,10 @@ public class BuyMenu extends UIComponent {
         }
     }
 
+    /**
+     * draws the menu and all the menu items along with the health and money of the player.
+     * @param g graphics object
+     */
     @Override
     public void draw(Graphics2D g) {
         g.setColor(Color.darkGray);
@@ -54,6 +70,10 @@ public class BuyMenu extends UIComponent {
         g.setColor(Color.black);
     }
 
+    /**
+     * checks whether the money of the player is enough to but a tower.
+     * And changed the color to red if not buyAble and green when it is.
+     */
     @Override
     public void update() {
         for (BuyMenuItem item : menuItems) {
@@ -61,6 +81,11 @@ public class BuyMenu extends UIComponent {
         }
     }
 
+    /**
+     * returns optional with tower that was clicked in the buyMenu
+     * @param point point where clicked
+     * @return Optional with clicked tower
+     */
     public Optional<Tower> getSelected(Point2D point) {
         for (BuyMenuItem item : menuItems) {
             if (item.contains(point) && item.isBuyAble()) {
