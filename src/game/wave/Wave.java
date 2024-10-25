@@ -35,7 +35,7 @@ public class Wave implements Updatable {
      * @return whether the wave is done
      */
     public boolean isDone() {
-        return mobsToSpawn.isEmpty();
+        return mobsToSpawn.isEmpty() && mobList.isEmpty();
     }
 
     /**

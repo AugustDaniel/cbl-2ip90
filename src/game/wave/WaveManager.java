@@ -1,6 +1,7 @@
 package game.wave;
 
 import game.GameManager;
+import game.npc.mobs.GoblinMob;
 import game.npc.mobs.Mob;
 import game.npc.mobs.ZombieMob;
 import game.util.Updatable;
@@ -27,7 +28,7 @@ public class WaveManager implements Updatable {
      */
     public WaveManager(GameManager manager) {
         this.manager = manager;
-        this.waveCounter = 1;
+        this.waveCounter = 4;
         this.timer = System.currentTimeMillis();
         this.breakStarted = false;
         startNewWave();
@@ -90,8 +91,16 @@ public class WaveManager implements Updatable {
     private void startNewWave() {
         Queue<Mob> mobsToSpawn = new ArrayDeque<>();
 
-        for (int i = 0; i < calculateAmountOfEnemies(); i++) {
+        int totalEnemies = calculateAmountOfEnemies();
+        int goblinCount = waveCounter > 5 ? totalEnemies / 3 : 0;
+        int zombieCount = totalEnemies - goblinCount;
+
+        for (int i = 0; i < zombieCount; i++) {
             mobsToSpawn.offer(new ZombieMob(manager));
+        }
+
+        for (int i = 0; i < goblinCount; i++) {
+            mobsToSpawn.offer(new GoblinMob(manager));
         }
 
         this.currentWave = new Wave(manager.getMobList(), mobsToSpawn, calculateSpawnRate());
