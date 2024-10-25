@@ -8,6 +8,11 @@ import game.util.Updatable;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
+/**
+ * WaveManager object.
+ * Manages the waves of the game and makes sures it starts
+ * and end waves appropriately.
+ */
 public class WaveManager implements Updatable {
 
     private GameManager manager;
@@ -16,6 +21,10 @@ public class WaveManager implements Updatable {
     private long timer;
     private boolean breakStarted;
 
+    /**
+     * Constructor WaveManager
+     * @param manager manager object
+     */
     public WaveManager(GameManager manager) {
         this.manager = manager;
         this.waveCounter = 1;
@@ -24,14 +33,24 @@ public class WaveManager implements Updatable {
         startNewWave();
     }
 
+    /**
+     * reset waves
+     */
     public void reset() {
         this.waveCounter = 1;
     }
 
+    /**
+     * start waves
+     */
     public void start() {
         startNewWave();
     }
 
+    /**
+     * updates the wave.
+     * If wave is done it will start a 5-second break before starting the next wave.
+     */
     @Override
     public void update() {
         if (currentWave.isDone()) {
@@ -60,6 +79,10 @@ public class WaveManager implements Updatable {
         breakStarted = true;
     }
 
+    /**
+     * get wave counter
+     * @return current wave counter
+     */
     public int getWaveCounter() {
         return waveCounter;
     }
