@@ -12,12 +12,24 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * TowerMenu connected to a tower.
+ * Used to upgrade and sell the tower in the game.
+ */
 public class TowerMenu extends UIComponent implements DefaultMouseListener {
 
     private Tower tower;
     private GameManager gameManager;
     private List<GameButton> buttons;
 
+    /**
+     * Constructor TowerMenu
+     * @param gameManager manager object
+     * @param tower tower
+     * @param width width
+     * @param height height
+     * @param position position
+     */
     public TowerMenu(GameManager gameManager, Tower tower, int width, int height, Point2D position) {
         super(width, height, position);
         this.gameManager = gameManager;
@@ -28,6 +40,10 @@ public class TowerMenu extends UIComponent implements DefaultMouseListener {
         this.buttons.add(new GameButton((int) (width * (2 / 3.0)), height / 2, new Point2D.Double(), "Sell", this::sell));
     }
 
+    /**
+     * draws the tower menu and its buttons.
+     * @param g graphics object
+     */
     @Override
     public void draw(Graphics2D g) {
         g.setColor(Color.white);
@@ -43,6 +59,9 @@ public class TowerMenu extends UIComponent implements DefaultMouseListener {
         g.drawString(String.valueOf(tower.getPrice()),(int)(position.getX() + width * (1/4.0)), (int)(position.getY()  - height / 2));
     }
 
+    /**
+     * updates the isBuyable property of the upgrade button
+     */
     @Override
     public void update() {
         buttons.get(0).setClickable(gameManager.getPlayerMoney() >= tower.getUpgradePrice() && tower.getUpgradeLevel() < 3);
@@ -56,6 +75,11 @@ public class TowerMenu extends UIComponent implements DefaultMouseListener {
         gameManager.sellTower(tower);
     }
 
+    /**
+     * called when mouse is clicked.
+     * detects whether a button is pressed and will call its action.
+     * @param e the event to be processed
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         for (GameButton button : buttons) {
@@ -65,6 +89,11 @@ public class TowerMenu extends UIComponent implements DefaultMouseListener {
         }
     }
 
+    /**
+     * sets the position of the tower menu.
+     * will be centered along the middle of the tower
+     * @param position position to set
+     */
     @Override
     public void setPosition(Point2D position) {
         super.setPosition(position);
