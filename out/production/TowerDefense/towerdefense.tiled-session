@@ -1,0 +1,39 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "map.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "map.tmx": {
+            "scale": 1.669921875,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 256.2994152046784,
+                "y": 256.2994152046784
+            }
+        },
+        "tileset.tsx": {
+            "scaleInDock": 0.5,
+            "scaleInEditor": 1
+        }
+    },
+    "last.imagePath": "C:/Users/user/IdeaProjects/untitled3/res",
+    "map.height": 16,
+    "map.lastUsedFormat": "tmx",
+    "map.width": 16,
+    "openFiles": [
+        "tileset.tsx",
+        "map.tmx"
+    ],
+    "project": "towerdefense.tiled-project",
+    "recentFiles": [
+        "tileset.tsx",
+        "map.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx"
+}
