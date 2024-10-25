@@ -184,17 +184,16 @@ public class GameManager implements Updatable {
 
     private void checkGameOver() {
         if (this.playerHealth <= 0) {
+            game.setState(GameState.GAME_OVER);
             endGame();
-            game.setState(GameState.MENU);
         }
     }
 
     /**
      * End game.
-     * Resets everything
+     * Resets everything and changes state to game over.
      */
     public void endGame() {
-        game.setState(GameState.GAME_OVER);
         clear();
     }
 
@@ -211,7 +210,8 @@ public class GameManager implements Updatable {
 
     /**
      * Sets the difficulty of the game.
-     * @param selectedItem
+     *
+     * @param selectedItem selected difficulty
      */
     public void setDifficulty(GameDifficulty selectedItem) {
         switch (selectedItem) {

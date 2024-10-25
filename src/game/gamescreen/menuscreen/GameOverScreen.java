@@ -50,10 +50,18 @@ public class GameOverScreen extends MenuScreen {
     }
 
     /**
-     * updates the wave counter label.
+     * does nothing
      */
     @Override
     public void update() {
-        waveCounter.setText("Waves survived: " + game.getGameManager().getWaveCounter());
+
+    }
+
+    /**
+     * sets wave counter to be displayed
+     * @param counter counter
+     */
+    public void setWaveCounter(int counter) {
+        waveCounter.setText("Waves survived: " + counter);
     }
 }

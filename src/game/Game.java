@@ -110,6 +110,11 @@ public class Game extends JPanel implements Runnable {
 
     public void setState(GameState state) {
         this.state = state;
+
+        if (state == GameState.GAME_OVER) {
+            ((GameOverScreen)(statePanel.get(state))).setWaveCounter(gameManager.getWaveCounter());
+        }
+
         SwingUtilities.invokeLater(() -> {
             cardLayout.show(this, this.state.name());
         });
