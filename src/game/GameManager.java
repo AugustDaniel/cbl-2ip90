@@ -194,6 +194,7 @@ public class GameManager implements Updatable {
      * Resets everything
      */
     public void endGame() {
+        game.setState(GameState.GAME_OVER);
         clear();
     }
 
