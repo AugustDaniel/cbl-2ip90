@@ -16,7 +16,7 @@ public class GoblinMob extends Mob{
      * @param manager manager object
      */
     public GoblinMob(GameManager manager) {
-        super(manager, "Goblin", 15, 10, 5, 0.5, Pathfinding.startPoint);
+        super(manager, "Goblin", 15, 20, 10, 0.7, Pathfinding.startPoint);
     }
 
     @Override

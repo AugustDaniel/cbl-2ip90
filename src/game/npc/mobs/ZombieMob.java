@@ -16,7 +16,7 @@ public class ZombieMob extends Mob{
      * @param manager manager object
      */
     public ZombieMob(GameManager manager) {
-        super(manager,"Zombie", 10, 5, 3, 1, Pathfinding.startPoint);
+        super(manager,"Zombie", 10, 10, 4, 1, Pathfinding.startPoint);
     }
 
     @Override

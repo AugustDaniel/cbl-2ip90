@@ -18,7 +18,7 @@ public class TankTower extends Tower{
      * @param manager manager object
      */
     public TankTower(Point2D position, GameManager manager) {
-        super(manager, position, "Tank", 1, 100, 50, 1);
+        super(manager, position, "Tank", 1, 75, 50, 1);
     }
 
     @Override

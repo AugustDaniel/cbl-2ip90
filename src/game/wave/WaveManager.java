@@ -28,7 +28,7 @@ public class WaveManager implements Updatable {
      */
     public WaveManager(GameManager manager) {
         this.manager = manager;
-        this.waveCounter = 4;
+        this.waveCounter = 1;
         this.timer = System.currentTimeMillis();
         this.breakStarted = false;
         startNewWave();
