@@ -41,7 +41,7 @@ public class TileMap implements Drawable {
             this.root = DocumentBuilderFactory.newDefaultInstance().newDocumentBuilder().parse(new File("res/map.tmx")).getDocumentElement();
             this.tileHeight = Integer.parseInt(this.root.getAttribute("tileheight"));
             this.tileWidth = Integer.parseInt(this.root.getAttribute("tilewidth"));
-            this.tileSet = new TileSet(ImageIO.read(new File("res/spriteatlas.png")), this.tileWidth, this.tileHeight);
+            this.tileSet = new TileSet(ImageIO.read(new File("res/towerDefense_tilesheet.png")), this.tileWidth, this.tileHeight);
         } catch (Exception e) {
             e.printStackTrace();
         }
