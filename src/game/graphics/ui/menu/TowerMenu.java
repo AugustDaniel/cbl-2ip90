@@ -45,7 +45,7 @@ public class TowerMenu extends UIComponent implements DefaultMouseListener {
 
     @Override
     public void update() {
-        buttons.get(0).setClickable(gameManager.getPlayerMoney() >= tower.getUpgradePrice());
+        buttons.get(0).setClickable(gameManager.getPlayerMoney() >= tower.getUpgradePrice() && tower.getUpgradeLevel() < 3);
      }
 
     private void upgrade() {

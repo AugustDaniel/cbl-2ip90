@@ -213,10 +213,6 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
      * Increases the range by half of the current range.
      */
     public void upgrade() {
-        if (this.upgradeLevel == 5) {
-            return;
-        }
-
         this.upgradePrice += price;
         this.damage += damage / 2;
         this.range += range / 2;
@@ -242,5 +238,9 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
         if (this.towerMenu != null) {
             this.towerMenu.setPosition(position);
         }
+    }
+
+    public int getUpgradeLevel() {
+        return upgradeLevel;
     }
 }
