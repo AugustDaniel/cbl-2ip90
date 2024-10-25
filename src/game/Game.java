@@ -25,7 +25,7 @@ public class Game extends JPanel implements Runnable {
     private final TileMap map;
 
     /**
-     * Constructor Game
+     * Constructor Game.
      */
     public Game() {
         this.map = new TileMap();
@@ -57,7 +57,7 @@ public class Game extends JPanel implements Runnable {
     }
 
     /**
-     * Starts the game thread
+     * Starts the game thread.
      */
     public void start() {
         thread = new Thread(this);
