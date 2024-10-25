@@ -46,7 +46,13 @@ public class Wave implements Updatable {
         long currentTime = System.currentTimeMillis();
 
         if (currentTime - this.timer >= spawnRate) {
-            mobList.add(mobsToSpawn.poll());
+            Mob mob = mobsToSpawn.poll();
+
+            if (mob == null) {
+                return;
+            }
+
+            mobList.add(mob);
             this.timer = System.currentTimeMillis();
         }
     }

@@ -148,7 +148,7 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
      */
     public void doDamage() {
         if (targetMob != null) {
-            if (!isInRange(targetMob.getPosition())) {
+            if (!isInRange(targetMob.getPosition()) || targetMob.isDead()) {
                 targetMob = null;
                 return;
             }

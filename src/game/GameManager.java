@@ -150,8 +150,8 @@ public class GameManager implements Updatable {
             tower.update(mobs);
         }
 
-        waveManager.update();
         updateMobs();
+        waveManager.update();
     }
 
     private void updateMobs() {
