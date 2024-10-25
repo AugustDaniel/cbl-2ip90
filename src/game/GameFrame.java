@@ -3,14 +3,14 @@ package game;
 import javax.swing.*;
 
 /**
- * Frame for the game
+ * Frame for the game.
  */
 public class GameFrame extends JFrame {
 
     private Game game = new Game();
 
     /**
-     * Constructor GameFrame
+     * Constructor GameFrame.
      */
     public GameFrame() {
         setTitle("Tower Defense");

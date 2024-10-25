@@ -1,13 +1,12 @@
 package game.pathfinding;
 
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
 import java.awt.geom.Point2D;
 import java.util.ArrayDeque;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Queue;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 public class Pathfinding {
 
@@ -39,15 +38,19 @@ public class Pathfinding {
         }
     }
 
-    public static void initPathfinding(int tileHeight, int tileWidth, int mapHeight, int mapWidth, NodeList objects) {
+    public static void initPathfinding(int tileHeight, 
+        int tileWidth, int mapHeight, int mapWidth, NodeList objects) {
         initGraph(mapHeight, mapWidth);
 
         for (int i = 0; i < objects.getLength(); i++) {
             Element element = (Element) objects.item(i);
-            Element content = (Element) ((Element) objects.item(i)).getElementsByTagName("object").item(0);
+            Element content = (Element) ((Element) objects.item(i))
+                .getElementsByTagName("object").item(0);
 
             if (element.getAttribute("name").equals("start")) {
-                startPoint = graph.getVertex((int) (Double.parseDouble(content.getAttribute("x")) / 32), (int) (Double.parseDouble(content.getAttribute("y")) / 32));
+                startPoint = graph.getVertex((int) (Double.parseDouble(content
+                    .getAttribute("x")) / 32), 
+                (int) (Double.parseDouble(content.getAttribute("y")) / 32));
             }
 
             if (element.getAttribute("name").equals("lane")) {
@@ -58,8 +61,10 @@ public class Pathfinding {
 
                     int xPos = (int) (Double.parseDouble(content.getAttribute("x")) / tileWidth);
                     int yPos = (int) (Double.parseDouble(content.getAttribute("y")) / tileHeight);
-                    int height = (int) (Double.parseDouble(content.getAttribute("height")) / tileHeight);
-                    int width = (int) (Double.parseDouble(content.getAttribute("width")) / tileWidth);
+                    int height = (int) (Double.parseDouble(content
+                        .getAttribute("height")) / tileHeight);
+                    int width = (int) (Double.parseDouble(content
+                        .getAttribute("width")) / tileWidth);
 
                     Vertex current = null;
                     Vertex previous = null;
@@ -75,7 +80,9 @@ public class Pathfinding {
             }
 
             if (element.getAttribute("name").equals("end")) {
-                endPoint = graph.getVertex((int) (Double.parseDouble(content.getAttribute("x")) / 32), (int) (Double.parseDouble(content.getAttribute("y")) / 32));
+                endPoint = graph.getVertex((int) (Double.parseDouble(content
+                    .getAttribute("x")) / 32), 
+                    (int) (Double.parseDouble(content.getAttribute("y")) / 32));
             }
         }
 
@@ -105,7 +112,7 @@ public class Pathfinding {
     }
 
     /**
-     * Checks whether a vertex does not have any neighbours
+     * Checks whether a vertex does not have any neighbours.
      * @param x x
      * @param y y
      * @return true if the vertex has neighbours false when not

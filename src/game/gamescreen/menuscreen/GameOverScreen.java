@@ -2,9 +2,8 @@ package game.gamescreen.menuscreen;
 
 import game.Game;
 import game.GameState;
-
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 /**
  * A game over screen with a wave counter and button to return to the main menu.
@@ -14,7 +13,7 @@ public class GameOverScreen extends MenuScreen {
     private JLabel waveCounter;
 
     /**
-     * Constructor GameScreen
+     * Constructor GameScreen.
      *
      * @param game game object
      */
@@ -50,7 +49,7 @@ public class GameOverScreen extends MenuScreen {
     }
 
     /**
-     * does nothing
+     * does nothing.
      */
     @Override
     public void update() {
@@ -58,7 +57,7 @@ public class GameOverScreen extends MenuScreen {
     }
 
     /**
-     * sets wave counter to be displayed
+     * sets wave counter to be displayed.
      * @param counter counter
      */
     public void setWaveCounter(int counter) {

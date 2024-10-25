@@ -3,7 +3,6 @@ package game.gamescreen.menuscreen;
 import game.Game;
 import game.GameDifficulty;
 import game.GameState;
-
 import javax.swing.*;
 
 /**
@@ -12,8 +11,7 @@ import javax.swing.*;
  * and add them to the menu.
  * By default, the buttons are centered in the middle.
  */
-public class ModeScreen extends MenuScreen{
-
+public class ModeScreen extends MenuScreen {
     /**
      * Constructor for ModeScreen.
      * @param game game object
@@ -43,7 +41,8 @@ public class ModeScreen extends MenuScreen{
 
         singlePlayerButton.addActionListener(e -> {
             game.setState(GameState.PLAYING);
-            game.getGameManager().setDifficulty((GameDifficulty) difficultySelector.getSelectedItem());
+            game.getGameManager()
+                .setDifficulty((GameDifficulty) difficultySelector.getSelectedItem());
         });
 
         backButton.addActionListener(e -> {
@@ -54,7 +53,7 @@ public class ModeScreen extends MenuScreen{
     }
 
     /**
-     * update does nothing
+     * Update does nothing.
      */
     @Override
     public void update() {

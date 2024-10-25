@@ -1,7 +1,7 @@
 package game;
 
 /**
- * Different difficulties for the gameplay
+ * Different difficulties for the gameplay.
  */
 public enum GameDifficulty {
     EASY,

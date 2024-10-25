@@ -1,15 +1,15 @@
 package game;
 
-import game.gamescreen.*;
+import game.gamescreen.GameScreen;
+import game.gamescreen.PlayingScreen;
 import game.gamescreen.menuscreen.GameOverScreen;
 import game.gamescreen.menuscreen.MenuScreen;
 import game.gamescreen.menuscreen.ModeScreen;
 import game.gamescreen.menuscreen.SettingsScreen;
 import game.graphics.map.TileMap;
-
-import javax.swing.*;
 import java.awt.*;
 import java.util.EnumMap;
+import javax.swing.*;
 
 
 public class Game extends JPanel implements Runnable {
@@ -56,13 +56,13 @@ public class Game extends JPanel implements Runnable {
 
     @Override
     public void run() {
-        double FPS_SET = 120.0;
-        double timePerFrame = 1000000000.0 / FPS_SET;
+        double fpsSet = 120.0;
+        double timePerFrame = 1000000000.0 / fpsSet;
         long lastFrame = System.nanoTime();
 
         long lastUpdate = System.nanoTime();
-        double UPS_SET = 60.0;
-        double timePerUpdate = 1000000000.0 / UPS_SET;
+        double upsSet = 60.0;
+        double timePerUpdate = 1000000000.0 / upsSet;
 
         int updates = 0;
         int frames = 0;
@@ -112,7 +112,7 @@ public class Game extends JPanel implements Runnable {
         this.state = state;
 
         if (state == GameState.GAME_OVER) {
-            ((GameOverScreen)(statePanel.get(state))).setWaveCounter(gameManager.getWaveCounter());
+            ((GameOverScreen) (statePanel.get(state))).setWaveCounter(gameManager.getWaveCounter());
         }
 
         SwingUtilities.invokeLater(() -> {

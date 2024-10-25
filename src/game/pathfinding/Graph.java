@@ -1,14 +1,14 @@
 package game.pathfinding;
 
 /**
- * Graph that contains Vertex
+ * Graph that contains Vertex.
  */
 public class Graph {
 
     Vertex[][] vertices;
 
     /**
-     * Constructor Graph
+     * Constructor Graph.
      * @param height height of the graph
      * @param width width of the graph
      */
@@ -17,7 +17,7 @@ public class Graph {
     }
 
     /**
-     * Get Vertex
+     * Get Vertex.
      * @param x x
      * @param y y
      * @return vertex at given position
@@ -27,7 +27,7 @@ public class Graph {
     }
 
     /**
-     * Set vertex
+     * Set vertex.
      * @param vertex vertex to add to graph
      * @param x x
      * @param y y

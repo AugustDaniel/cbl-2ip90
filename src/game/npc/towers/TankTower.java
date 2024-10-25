@@ -2,18 +2,17 @@ package game.npc.towers;
 
 
 import game.GameManager;
-
-import javax.imageio.ImageIO;
 import java.awt.geom.Point2D;
 import java.io.File;
+import javax.imageio.ImageIO;
 
 /**
  * Tank tower with set values for all parameters.
  */
-public class TankTower extends Tower{
+public class TankTower extends Tower {
 
     /**
-     * Constructor RoundTower
+     * Constructor RoundTower.
      * @param position position
      * @param manager manager object
      */
@@ -31,7 +30,7 @@ public class TankTower extends Tower{
     }
 
     /**
-     * Creates a new tower object with the same values
+     * Creates a new tower object with the same values.
      * @return new object copy of this tower
      */
     @Override

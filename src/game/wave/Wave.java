@@ -2,7 +2,6 @@ package game.wave;
 
 import game.npc.mobs.Mob;
 import game.util.Updatable;
-
 import java.util.List;
 import java.util.Queue;
 
@@ -18,7 +17,7 @@ public class Wave implements Updatable {
     private long timer;
 
     /**
-     * Constructor Wave
+     * Constructor Wave.
      * @param mobList list of mobs from game manager
      * @param mobsToSpawn queue with mobs to spawn
      * @param spawnRate spawn rate in nanoseconds
@@ -39,7 +38,7 @@ public class Wave implements Updatable {
     }
 
     /**
-     * Adds the mobs to the mob list on the interval of the spawn rate
+     * Adds the mobs to the mob list on the interval of the spawn rate.
      */
     @Override
     public void update() {

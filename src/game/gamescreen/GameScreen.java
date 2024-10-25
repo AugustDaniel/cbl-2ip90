@@ -2,9 +2,8 @@ package game.gamescreen;
 
 import game.Game;
 import game.util.Updatable;
-
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 /**
  * Abstract class that extends JPanel.
@@ -15,7 +14,7 @@ public abstract class GameScreen extends JPanel implements Updatable {
     protected final Game game;
 
     /**
-     * Constructor GameScreen
+     * Constructor GameScreen.
      * @param game game object
      */
     public GameScreen(Game game) {

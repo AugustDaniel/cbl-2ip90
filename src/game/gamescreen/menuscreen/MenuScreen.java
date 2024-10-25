@@ -3,12 +3,11 @@ package game.gamescreen.menuscreen;
 import game.Game;
 import game.GameState;
 import game.gamescreen.GameScreen;
-
-import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.*;
 
 /**
  * GamesScreen used as a menu screen.
@@ -22,7 +21,7 @@ public class MenuScreen extends GameScreen {
     protected GridBagConstraints constraints;
 
     /**
-     * MenuScreen constructor
+     * MenuScreen constructor.
      * @param game game object
      */
     public MenuScreen(Game game) {
@@ -31,7 +30,7 @@ public class MenuScreen extends GameScreen {
         constraints = new GridBagConstraints();
         setLayout(new GridBagLayout());
         constraints.gridx = 0;
-        constraints.insets = new Insets(2,0,2,0);
+        constraints.insets = new Insets(2, 0, 2, 0);
         init();
     }
 
@@ -39,11 +38,20 @@ public class MenuScreen extends GameScreen {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        LinearGradientPaint paint = new LinearGradientPaint(new Point2D.Double(), new Point2D.Double(size.getWidth(), size.getHeight()), new float[]{0.25f, 0.50f, 0.75f, 1f}, new Color[]{Color.BLACK, Color.DARK_GRAY, Color.GRAY, Color.WHITE});
+        LinearGradientPaint paint = new LinearGradientPaint(
+            new Point2D.Double(), 
+            new Point2D.Double(size.getWidth(), size.getHeight()), 
+            new float[]{0.25f, 0.50f, 0.75f, 1f}, 
+            new Color[]{Color.BLACK, Color.DARK_GRAY, Color.GRAY, Color.WHITE});
         g2d.setPaint(paint);
-        g2d.fillRect(0,0, size.width, size.height);
+        g2d.fillRect(0, 0, size.width, size.height);
     }
 
+    /**
+     * Initialize the menu.
+     * Make sure to call clear() in the beginning of the method.
+     * Add buttons to the buttons list and use the setupButtons to initialize them.
+     */
     protected void init() {
         clear();
         JButton playButton = new JButton("Play");
@@ -77,6 +85,10 @@ public class MenuScreen extends GameScreen {
 
     }
 
+    /**
+     * Sets up the buttons in the buttons list.
+     * Adds them to the menuscreen using the appropriate dimensions.
+     */
     protected void setUpButtons() {
         Dimension buttonSize = new Dimension(150, 25);
         for (JButton button : buttons) {
@@ -86,6 +98,9 @@ public class MenuScreen extends GameScreen {
         }
     }
 
+    /**
+     * Clears all the buttons in the buttonlist.
+     */
     protected void clear() {
         buttons.clear();
         removeAll();

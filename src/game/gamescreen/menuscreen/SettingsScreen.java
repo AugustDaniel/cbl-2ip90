@@ -2,7 +2,6 @@ package game.gamescreen.menuscreen;
 
 import game.Game;
 import game.GameState;
-
 import javax.swing.*;
 
 /**
@@ -14,7 +13,7 @@ import javax.swing.*;
 public class SettingsScreen extends MenuScreen {
 
     /**
-     * Constructor SettingsScreen
+     * Constructor SettingsScreen.
      * @param game game object
      */
     public SettingsScreen(Game game) {
@@ -46,7 +45,7 @@ public class SettingsScreen extends MenuScreen {
     }
 
     /**
-     * Update does nothing
+     * Update does nothing.
      */
     @Override
     public void update() {

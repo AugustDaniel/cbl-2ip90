@@ -5,7 +5,6 @@ import game.graphics.ui.menu.TowerMenu;
 import game.npc.Npc;
 import game.npc.mobs.Mob;
 import game.util.SoundPlayer;
-
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.io.File;
@@ -31,7 +30,7 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     protected int upgradeLevel;
 
     /**
-     * Constructor Tower
+     * Constructor Tower.
      * @param gameManager manager object
      * @param position position
      * @param name name
@@ -40,7 +39,8 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
      * @param price price
      * @param fireRate fireRate
      */
-    public Tower(GameManager gameManager, Point2D position, String name, int damage, int range, int price, int fireRate) {
+    public Tower(GameManager gameManager, 
+        Point2D position, String name, int damage, int range, int price, int fireRate) {
         super(position, gameManager);
         this.name = name;
         this.damage = damage;
@@ -57,7 +57,7 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     }
 
     /**
-     * Get damage
+     * Get damage.
      * @return damage
      */
     public int getDamage() {
@@ -65,7 +65,7 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     }
 
     /**
-     * Get price
+     * Get price.
      * @return price
      */
     public int getPrice() {
@@ -81,19 +81,22 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     public void draw(Graphics2D g) {
         if (isClicked) {
             g.setColor(new Color(0, 0, 0, 0.3f));
-            g.fillOval((int) (position.getX() - range), (int) (position.getY() - range), range * 2, range * 2);
+            g.fillOval((int) (position.getX() - range), 
+                (int) (position.getY() - range), range * 2, range * 2);
 
             if (isPlaced) {
                 towerMenu.draw(g);
             }
         }
 
-        g.drawImage(image, (int) (this.position.getX() - image.getWidth() / 2), (int) (position.getY() - image.getHeight() / 2), null);
+        g.drawImage(image, 
+            (int) (this.position.getX() - image.getWidth() / 2), 
+            (int) (position.getY() - image.getHeight() / 2), null);
         g.setColor(Color.black);
     }
 
     /**
-     * Name as string
+     * Name as string.
      * @return the name of the tower
      */
     @Override
@@ -102,7 +105,7 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     }
 
     /**
-     * Compares the price of the towers
+     * Compares the price of the towers.
      * @param o the object to be compared.
      * @return the comparison of the price
      */
@@ -112,7 +115,7 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     }
 
     /**
-     * abstract method of copy of tower
+     * abstract method of copy of tower.
      * @return copy of the tower
      */
     public abstract Tower copyOf();
@@ -165,7 +168,7 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     }
 
     /**
-     * Checks whether a position is in range of the tower
+     * Checks whether a position is in range of the tower.
      * @param position position to check
      * @return true if in range false when not
      */
@@ -174,7 +177,7 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     }
 
     /**
-     * toggles the isClicked variable of the tower
+     * toggles the isClicked variable of the tower.
      * @return the value of isClicked after the toggle
      */
     public boolean toggleClicked() {
@@ -183,7 +186,7 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     }
 
     /**
-     * Set clicked
+     * Set clicked.
      * @param isClicked value to set
      */
     public void setClicked(boolean isClicked) {
@@ -191,7 +194,7 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     }
 
     /**
-     * Set placed
+     * Set placed.
      * @param isPlaced value to set
      */
     public void setPlaced(boolean isPlaced) {
@@ -199,7 +202,7 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     }
 
     /**
-     * Get TowerMenu
+     * Get TowerMenu.
      * @return TowerMenu attached to the tower
      */
     public TowerMenu getTowerMenu() {
@@ -220,7 +223,7 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     }
 
     /**
-     * Get upgrade price
+     * Get upgrade price.
      * @return upgrade price
      */
     public int getUpgradePrice() {
@@ -228,7 +231,7 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     }
 
     /**
-     * Set position of the tower and also the tower menu
+     * Set position of the tower and also the tower menu.
      * @param position position
      */
     @Override

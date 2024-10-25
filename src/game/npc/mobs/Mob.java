@@ -4,7 +4,6 @@ import game.GameManager;
 import game.graphics.ui.HealthBar;
 import game.npc.Npc;
 import game.pathfinding.Vertex;
-
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.List;
@@ -27,7 +26,7 @@ public abstract class Mob extends Npc {
     protected Vertex currentVertex;
 
     /**
-     * Constructor Mob
+     * Constructor Mob.
      * @param manager manager object
      * @param name name
      * @param price price
@@ -36,7 +35,8 @@ public abstract class Mob extends Npc {
      * @param speed speed
      * @param currentVertex current vertex for pathfinding
      */
-    public Mob(GameManager manager, String name, int price, int damage, int maxHealth, double speed, Vertex currentVertex) {
+    public Mob(GameManager manager, 
+            String name, int price, int damage, int maxHealth, double speed, Vertex currentVertex) {
         super(currentVertex.getPosition(), manager);
         this.name = name;
         this.price = price;
@@ -47,15 +47,22 @@ public abstract class Mob extends Npc {
         this.speed = speed;
         this.position = currentVertex.getPosition();
         this.currentVertex = currentVertex;
-        this.healthBar = new HealthBar(1, 40, 5, new Point2D.Double(position.getX() - image.getWidth() / 2.0, position.getY() - image.getHeight()));
+        this.healthBar = new HealthBar(1, 
+        40, 
+        5, 
+            new Point2D.Double(position.getX() - image.getWidth() / 2.0, 
+                position.getY() - image.getHeight()));
     }
 
     /**
-     * draws the mob and its health bar
+     * draws the mob and its health bar.
      * @param g graphics object
      */
+    @Override
     public void draw(Graphics2D g) {
-        g.drawImage(image, (int) (this.position.getX() - image.getWidth() / 2), (int) (position.getY() - image.getHeight() / 2), null);
+        g.drawImage(image, 
+            (int) (this.position.getX() - image.getWidth() / 2), 
+                (int) (position.getY() - image.getHeight() / 2), null);
         healthBar.draw(g);
     }
 
@@ -72,14 +79,16 @@ public abstract class Mob extends Npc {
             return;
         }
         
-        double newAngle = Math.atan2(this.targetPosition.getY() - this.position.getY(), this.targetPosition.getX() - this.position.getX());
+        double newAngle = Math.atan2(this.targetPosition.getY() - this.position.getY(),
+            this.targetPosition.getX() - this.position.getX());
 
         this.position = new Point2D.Double(
                 this.position.getX() + speed * Math.cos(newAngle),
                 this.position.getY() + speed * Math.sin(newAngle)
         );
 
-        healthBar.setPosition(new Point2D.Double(position.getX() - image.getWidth() / 2.0, position.getY() - image.getHeight()));
+        healthBar.setPosition(new Point2D.Double(position.getX() - image.getWidth() / 2.0, 
+            position.getY() - image.getHeight()));
     }
 
     /**
@@ -91,7 +100,7 @@ public abstract class Mob extends Npc {
     }
 
     /**
-     * Set target position
+     * Set target position.
      * @param targetPosition position to set as target position
      */
     public void setTargetPosition(Point2D targetPosition) {
@@ -107,7 +116,7 @@ public abstract class Mob extends Npc {
     }
 
     /**
-     * Get price
+     * Get price.
      * @return price
      */
     public int getPrice() {
@@ -115,7 +124,7 @@ public abstract class Mob extends Npc {
     }
 
     /**
-     * calculates the percentage of the current health in relation to the max health
+     * calculates the percentage of the current health in relation to the max health.
      * @return percentage of current health
      */
     public float getHealthPercentage() {
@@ -131,7 +140,7 @@ public abstract class Mob extends Npc {
     }
 
     /**
-     * Get current vertex
+     * Get current vertex.
      * @return current vertex
      */
     public Vertex getCurrentVertex() {
@@ -139,7 +148,7 @@ public abstract class Mob extends Npc {
     }
 
     /**
-     * Set current vertex
+     * Set current vertex.
      * @param vertex vertex to set as current
      */
     public void setCurrentVertex(Vertex vertex) {
@@ -148,7 +157,7 @@ public abstract class Mob extends Npc {
     }
 
     /**
-     * Get damage
+     * Get damage.
      * @return damage
      */
     public int getDamage() {

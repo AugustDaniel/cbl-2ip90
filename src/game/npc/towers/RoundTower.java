@@ -1,18 +1,17 @@
 package game.npc.towers;
 
 import game.GameManager;
-
-import javax.imageio.ImageIO;
 import java.awt.geom.Point2D;
 import java.io.File;
+import javax.imageio.ImageIO;
 
 /**
  * Round tower with set values for all parameters.
  */
-public class RoundTower extends Tower{
+public class RoundTower extends Tower {
 
     /**
-     * Constructor RoundTower
+     * Constructor RoundTower.
      * @param position position
      * @param gameManager manager object
      */
@@ -30,7 +29,7 @@ public class RoundTower extends Tower{
     }
 
     /**
-     * Creates a new tower object with the same values
+     * Creates a new tower object with the same values.
      * @return new object copy of this tower
      */
     @Override

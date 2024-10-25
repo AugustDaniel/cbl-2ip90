@@ -8,7 +8,7 @@ import java.io.Serializable;
 public interface Updatable extends Serializable {
 
     /**
-     * update
+     * update.
      */
     void update();
 }

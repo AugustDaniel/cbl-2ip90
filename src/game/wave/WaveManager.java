@@ -5,7 +5,6 @@ import game.npc.mobs.GoblinMob;
 import game.npc.mobs.Mob;
 import game.npc.mobs.ZombieMob;
 import game.util.Updatable;
-
 import java.util.ArrayDeque;
 import java.util.Queue;
 
@@ -23,7 +22,7 @@ public class WaveManager implements Updatable {
     private boolean breakStarted;
 
     /**
-     * Constructor WaveManager
+     * Constructor WaveManager.
      * @param manager manager object
      */
     public WaveManager(GameManager manager) {
@@ -35,14 +34,14 @@ public class WaveManager implements Updatable {
     }
 
     /**
-     * reset waves
+     * reset waves.
      */
     public void reset() {
         this.waveCounter = 1;
     }
 
     /**
-     * start waves
+     * start waves.
      */
     public void start() {
         startNewWave();
@@ -81,7 +80,7 @@ public class WaveManager implements Updatable {
     }
 
     /**
-     * get wave counter
+     * get wave counter.
      * @return current wave counter
      */
     public int getWaveCounter() {
@@ -115,6 +114,7 @@ public class WaveManager implements Updatable {
         long minInterval = 500;
         double scalingFactor = 0.9;
 
-        return Math.max(minInterval, (long) (baseInterval * Math.pow(scalingFactor, waveCounter - 1)));
+        return Math.max(minInterval, 
+        (long) (baseInterval * Math.pow(scalingFactor, waveCounter - 1)));
     }
 }

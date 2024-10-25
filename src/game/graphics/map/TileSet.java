@@ -11,13 +11,13 @@ import java.util.Optional;
  */
 public class TileSet {
 
-    private List<BufferedImage> tiles;
+    private final List<BufferedImage> tiles;
     public int tileHeight;
     public int tileWidth;
-    private BufferedImage image;
+    private final BufferedImage image;
 
     /**
-     * constructor TileSet
+     * constructor TileSet.
      * @param image complete tileSet image
      * @param width width of single tile
      * @param height height of single tile

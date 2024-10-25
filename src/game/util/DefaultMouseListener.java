@@ -13,7 +13,7 @@ import java.awt.event.MouseMotionListener;
 public interface DefaultMouseListener extends MouseListener, MouseMotionListener {
 
     /**
-     * Does nothing
+     * Does nothing.
      * @param e the event to be processed
      */
     @Override
@@ -22,7 +22,7 @@ public interface DefaultMouseListener extends MouseListener, MouseMotionListener
     }
 
     /**
-     * Does nothing
+     * Does nothing.
      * @param e the event to be processed
      */
     @Override
@@ -31,7 +31,7 @@ public interface DefaultMouseListener extends MouseListener, MouseMotionListener
     }
 
     /**
-     * Does nothing
+     * Does nothing.
      * @param e the event to be processed
      */
     @Override
@@ -40,7 +40,7 @@ public interface DefaultMouseListener extends MouseListener, MouseMotionListener
     }
 
     /**
-     * Does nothing
+     * Does nothing.
      * @param e the event to be processed
      */
     @Override
@@ -49,7 +49,7 @@ public interface DefaultMouseListener extends MouseListener, MouseMotionListener
     }
 
     /**
-     * Does nothing
+     * Does nothing.
      * @param e the event to be processed
      */
     @Override
@@ -58,7 +58,7 @@ public interface DefaultMouseListener extends MouseListener, MouseMotionListener
     }
 
     /**
-     * Does nothing
+     * Does nothing.
      * @param e the event to be processed
      */
     @Override
@@ -67,7 +67,7 @@ public interface DefaultMouseListener extends MouseListener, MouseMotionListener
     }
 
     /**
-     * Does nothing
+     * Does nothing.
      * @param e the event to be processed
      */
     @Override

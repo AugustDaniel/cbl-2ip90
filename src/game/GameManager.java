@@ -8,7 +8,6 @@ import game.pathfinding.Pathfinding;
 import game.pathfinding.Vertex;
 import game.util.Updatable;
 import game.wave.WaveManager;
-
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -22,8 +21,8 @@ import java.util.TreeSet;
  */
 public class GameManager implements Updatable {
 
-    private final int DEFAULT_HEALTH = 100;
-    private final int DEFAULT_MONEY = 100;
+    private final int defaultHealth = 100;
+    private final int defaultMoney = 100;
     private int playerMoney;
     private int playerHealth;
     private final List<Tower> towerList;
@@ -34,13 +33,13 @@ public class GameManager implements Updatable {
     private WaveManager waveManager;
 
     /**
-     * Constructor GameManager
+     * Constructor GameManager.
      * @param game game object
      */
     public GameManager(Game game) {
         this.towerList = new ArrayList<>();
-        this.playerMoney = DEFAULT_MONEY;
-        this.playerHealth = DEFAULT_HEALTH;
+        this.playerMoney = defaultMoney;
+        this.playerHealth = defaultHealth;
         this.buyableTowers = new TreeSet<>();
         this.mobs = new ArrayList<>();
         this.soundOn = true;
@@ -49,13 +48,13 @@ public class GameManager implements Updatable {
         init();
     }
 
-    private void init () {
+    private void init() {
         this.buyableTowers.add(new TankTower(new Point2D.Double(), this));
         this.buyableTowers.add(new RoundTower(new Point2D.Double(), this));
     }
 
     /**
-     * Start the game
+     * Start the game.
      */
     public void start() {
         waveManager.start();
@@ -74,7 +73,7 @@ public class GameManager implements Updatable {
     }
 
     /**
-     * Get BuyAble Towers
+     * Get BuyAble Towers.
      * @return ordered set of all buyAble towers
      */
     public TreeSet<Tower> getBuyableTowers() {
@@ -82,7 +81,7 @@ public class GameManager implements Updatable {
     }
 
     /**
-     * Get player money
+     * Get player money.
      * @return player money
      */
     public int getPlayerMoney() {
@@ -90,7 +89,7 @@ public class GameManager implements Updatable {
     }
 
     /**
-     * Get player health
+     * Get player health.
      * @return player health
      */
     public int getPlayerHealth() {
@@ -98,7 +97,7 @@ public class GameManager implements Updatable {
     }
 
     /**
-     * Get tower list
+     * Get tower list.
      * @return tower list
      */
     public List<Tower> getTowerList() {
@@ -106,7 +105,7 @@ public class GameManager implements Updatable {
     }
 
     /**
-     * Get mob list
+     * Get mob list.
      * @return mob list
      */
     public List<Mob> getMobList() {
@@ -198,13 +197,13 @@ public class GameManager implements Updatable {
     }
 
     /**
-     * Clear all list except buyAble towers and sets health and money back to default
+     * Clear all list except buyAble towers and sets health and money back to default.
      */
     private void clear() {
         this.towerList.clear();
         this.mobs.clear();
-        playerMoney = DEFAULT_MONEY;
-        playerHealth = DEFAULT_HEALTH;
+        playerMoney = defaultMoney;
+        playerHealth = defaultHealth;
         this.waveManager.reset();
     }
 
@@ -215,21 +214,22 @@ public class GameManager implements Updatable {
      */
     public void setDifficulty(GameDifficulty selectedItem) {
         switch (selectedItem) {
-            case EASY -> this.playerHealth = DEFAULT_HEALTH * 2;
-            case NORMAL -> this.playerHealth = this.DEFAULT_HEALTH;
-            case HARD -> this.playerHealth = DEFAULT_HEALTH / 2;
+            case EASY -> this.playerHealth = defaultHealth * 2;
+            case NORMAL -> this.playerHealth = this.defaultHealth;
+            case HARD -> this.playerHealth = defaultHealth / 2;
+            default -> this.playerHealth = defaultHealth;
         }
     }
 
     /**
-     * toggles the soundOn variable
+     * toggles the soundOn variable.
      */
     public void toggleSoundOn() {
         this.soundOn = !this.soundOn;
     }
 
     /**
-     * isSoundOn
+     * isSoundOn.
      * @return isSoundOn
      */
     public boolean isSoundOn() {
@@ -237,7 +237,7 @@ public class GameManager implements Updatable {
     }
 
     /**
-     * get wave counter
+     * get wave counter.
      * @return the current wave counter
      */
     public int getWaveCounter() {

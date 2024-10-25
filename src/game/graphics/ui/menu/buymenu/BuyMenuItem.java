@@ -2,21 +2,20 @@ package game.graphics.ui.menu.buymenu;
 
 import game.graphics.ui.UIComponent;
 import game.npc.towers.Tower;
-
 import java.awt.*;
 import java.awt.geom.Point2D;
 
 /**
- * Item for a tower buy menu
+ * Item for a tower buy menu.
  */
 public class BuyMenuItem extends UIComponent {
 
     private boolean isBuyAble;
-    private Tower item;
+    private final Tower item;
     private Point2D position;
 
     /**
-     * Constructor BuyMenuItem
+     * Constructor BuyMenuItem.
      * @param tower tower
      * @param position position
      * @param width width
@@ -31,11 +30,12 @@ public class BuyMenuItem extends UIComponent {
     }
 
     private void init() {
-        item.setPosition(new Point2D.Double((position.getX() + width / 2.0), position.getY() + height / 2.0));
+        item.setPosition(
+            new Point2D.Double((position.getX() + width / 2.0), position.getY() + height / 2.0));
     }
 
     /**
-     * is buyable
+     * is buyable.
      * @return whether tower is buyable
      */
     public boolean isBuyAble() {
@@ -43,7 +43,7 @@ public class BuyMenuItem extends UIComponent {
     }
 
     /**
-     * set buyable
+     * set buyable.
      * @param buyAble buyable to set
      */
     public void setBuyAble(boolean buyAble) {
@@ -51,7 +51,7 @@ public class BuyMenuItem extends UIComponent {
     }
 
     /**
-     * get item
+     * get item.
      * @return item
      */
     public Tower getItem() {
@@ -78,13 +78,16 @@ public class BuyMenuItem extends UIComponent {
             g.setColor(Color.red);
         }
 
-        g.drawString(String.valueOf(item.getPrice()), (int) position.getX() + (width / 2) - 8, (int) (position.getY()  + height - 2));
+        g.drawString(
+            String.valueOf(item.getPrice()), 
+            (int) position.getX() + (width / 2) - 8, 
+            (int) (position.getY()  + height - 2));
 
         g.setColor(Color.black);
     }
 
     /**
-     * does nothing
+     * does nothing.
      */
     @Override
     public void update() {

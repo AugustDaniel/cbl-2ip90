@@ -14,7 +14,7 @@ public class Vertex {
     private Point2D position;
 
     /**
-     * Constructor Vertex
+     * Constructor Vertex.
      * @param position position of the vertex on the screen
      */
     public Vertex(Point2D position) {
@@ -23,7 +23,7 @@ public class Vertex {
     }
 
     /**
-     * Add a neighbour to the neighbours list
+     * Add a neighbour to the neighbours list.
      * @param vertex vertex to add
      */
     public void addNeighbour(Vertex vertex) {
@@ -31,7 +31,7 @@ public class Vertex {
     }
 
     /**
-     * Get al the neighbours
+     * Get al the neighbours.
      * @return list of vertex with all the neighbours
      */
     public List<Vertex> getNeighbours() {
@@ -39,7 +39,7 @@ public class Vertex {
     }
 
     /**
-     * Get position on the screen
+     * Get position on the screen.
      * @return the position of the vertex on the screen
      */
     public Point2D getPosition() {

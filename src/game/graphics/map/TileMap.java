@@ -2,17 +2,14 @@ package game.graphics.map;
 
 import game.pathfinding.Pathfinding;
 import game.util.Drawable;
-
-
-import org.w3c.dom.Element;
-
-import javax.imageio.ImageIO;
-import javax.xml.parsers.DocumentBuilderFactory;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Optional;
+import javax.imageio.ImageIO;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Element;
 
 /**
  * This object will initialize the tile map from an XML file.
@@ -30,7 +27,7 @@ public class TileMap implements Drawable {
     private Element root;
 
     /**
-     * Constructor TileMap
+     * Constructor TileMap.
      */
     public TileMap() {
         init();
@@ -38,10 +35,15 @@ public class TileMap implements Drawable {
 
     private void init() {
         try {
-            this.root = DocumentBuilderFactory.newDefaultInstance().newDocumentBuilder().parse(new File("res/map.tmx")).getDocumentElement();
+            this.root = DocumentBuilderFactory
+                .newDefaultInstance()
+                .newDocumentBuilder().parse(new File("res/map.tmx")).getDocumentElement();
             this.tileHeight = Integer.parseInt(this.root.getAttribute("tileheight"));
             this.tileWidth = Integer.parseInt(this.root.getAttribute("tilewidth"));
-            this.tileSet = new TileSet(ImageIO.read(new File("res/towerDefense_tilesheet.png")), this.tileWidth, this.tileHeight);
+            this.tileSet = new TileSet(
+                ImageIO.read(new File("res/towerDefense_tilesheet.png")), 
+                this.tileWidth, 
+                this.tileHeight);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,7 +59,12 @@ public class TileMap implements Drawable {
                 .trim()
                 .split(",");
 
-        Pathfinding.initPathfinding(tileHeight, tileWidth, mapHeight, mapWidth, this.root.getElementsByTagName("objectgroup"));
+        Pathfinding.initPathfinding(
+            tileHeight, 
+            tileWidth, 
+            mapHeight, 
+            mapWidth, 
+            this.root.getElementsByTagName("objectgroup"));
 
         int counter = 0;
         for (int i = 0; i < mapHeight; i++) {
@@ -69,7 +76,7 @@ public class TileMap implements Drawable {
     }
 
     /**
-     * Draws all the tiles in the tileMap
+     * Draws all the tiles in the tileMap.
      * @param g graphics object
      */
     @Override

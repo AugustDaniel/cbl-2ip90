@@ -2,7 +2,6 @@ package game.graphics.ui;
 
 import game.util.Drawable;
 import game.util.Updatable;
-
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
@@ -17,7 +16,7 @@ public abstract class UIComponent implements Drawable, Updatable {
     protected Point2D position;
 
     /**
-     * Constructor UIComponent
+     * Constructor UIComponent.
      * @param width width
      * @param height height
      * @param position position of upper left corner
@@ -29,7 +28,7 @@ public abstract class UIComponent implements Drawable, Updatable {
     }
 
     /**
-     * get width
+     * get width.
      * @return width
      */
     public int getWidth() {
@@ -37,7 +36,7 @@ public abstract class UIComponent implements Drawable, Updatable {
     }
 
     /**
-     * set width
+     * set width.
      * @param width width to set
      */
     public void setWidth(int width) {
@@ -45,7 +44,7 @@ public abstract class UIComponent implements Drawable, Updatable {
     }
 
     /**
-     * get height
+     * get height.
      * @return height
      */
     public int getHeight() {
@@ -53,7 +52,7 @@ public abstract class UIComponent implements Drawable, Updatable {
     }
 
     /**
-     * set height
+     * set height.
      * @param height height to set
      */
     public void setHeight(int height) {
@@ -61,7 +60,7 @@ public abstract class UIComponent implements Drawable, Updatable {
     }
 
     /**
-     * get position
+     * get position.
      * @return position upper left corner
      */
     public Point2D getPosition() {
@@ -69,7 +68,7 @@ public abstract class UIComponent implements Drawable, Updatable {
     }
 
     /**
-     * set position
+     * set position.
      * @param position position to set
      */
     public void setPosition(Point2D position) {
@@ -77,11 +76,12 @@ public abstract class UIComponent implements Drawable, Updatable {
     }
 
     /**
-     * Checks if point is within the UIComponent
+     * Checks if point is within the UIComponent.
      * @param point point
      * @return true if point is inside false if not
      */
     public boolean contains(Point2D point) {
-        return new Rectangle2D.Double(position.getX(), position.getY(), width, height).contains(point);
+        return new Rectangle2D.Double(
+            position.getX(), position.getY(), width, height).contains(point);
     }
 }

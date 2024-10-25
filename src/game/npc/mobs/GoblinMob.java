@@ -2,17 +2,16 @@ package game.npc.mobs;
 
 import game.GameManager;
 import game.pathfinding.Pathfinding;
-
-import javax.imageio.ImageIO;
 import java.io.File;
+import javax.imageio.ImageIO;
 
 /**
- * Goblin mob with set values for all the parameters
+ * Goblin mob with set values for all the parameters.
  */
-public class GoblinMob extends Mob{
+public class GoblinMob extends Mob {
 
     /**
-     * Constructor GoblinMob
+     * Constructor GoblinMob.
      * @param manager manager object
      */
     public GoblinMob(GameManager manager) {
@@ -22,7 +21,8 @@ public class GoblinMob extends Mob{
     @Override
     protected void initImage() {
         try {
-            this.image = ImageIO.read(new File("res/ArmourPsionicGoblin.png")).getSubimage(0,0, 32, 32);
+            this.image = ImageIO.read(new File("res/ArmourPsionicGoblin.png"))
+                .getSubimage(0, 0, 32, 32);
         } catch (Exception e) {
             e.printStackTrace();
         }

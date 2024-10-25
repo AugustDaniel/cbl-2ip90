@@ -1,9 +1,9 @@
 package game.util;
 
+import java.io.File;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import java.io.File;
 
 /**
  * Utility class used to play a sound.

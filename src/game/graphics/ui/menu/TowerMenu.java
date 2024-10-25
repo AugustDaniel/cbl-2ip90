@@ -5,7 +5,6 @@ import game.graphics.ui.GameButton;
 import game.graphics.ui.UIComponent;
 import game.npc.towers.Tower;
 import game.util.DefaultMouseListener;
-
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
@@ -18,26 +17,43 @@ import java.util.List;
  */
 public class TowerMenu extends UIComponent implements DefaultMouseListener {
 
-    private Tower tower;
-    private GameManager gameManager;
-    private List<GameButton> buttons;
+    private final Tower tower;
+    private final GameManager gameManager;
+    private final List<GameButton> buttons;
 
     /**
-     * Constructor TowerMenu
+     * Constructor TowerMenu.
      * @param gameManager manager object
      * @param tower tower
      * @param width width
      * @param height height
      * @param position position
      */
-    public TowerMenu(GameManager gameManager, Tower tower, int width, int height, Point2D position) {
+    public TowerMenu(
+        GameManager gameManager, 
+        Tower tower, 
+        int width, 
+        int height, 
+        Point2D position) {
         super(width, height, position);
         this.gameManager = gameManager;
         this.tower = tower;
         this.buttons = new ArrayList<>();
 
-        this.buttons.add(new GameButton((int) (width * (2 / 3.0)), height / 2, new Point2D.Double(), "Upgrade", this::upgrade));
-        this.buttons.add(new GameButton((int) (width * (2 / 3.0)), height / 2, new Point2D.Double(), "Sell", this::sell));
+        this.buttons.add(
+            new GameButton(
+                (int) (width * (2 / 3.0)), 
+                height / 2, 
+                new Point2D.Double(), 
+                "Upgrade", 
+                this::upgrade));
+        this.buttons.add(
+            new GameButton(
+                (int) (width * (2 / 3.0)), 
+                height / 2, 
+                new Point2D.Double(), 
+                "Sell", 
+                this::sell));
     }
 
     /**
@@ -47,25 +63,37 @@ public class TowerMenu extends UIComponent implements DefaultMouseListener {
     @Override
     public void draw(Graphics2D g) {
         g.setColor(Color.white);
-        g.fillRect((int) (position.getX() - width / 2.0), (int) (position.getY() - height - 15), width, height);
+        g.fillRect((int) (position.getX() - width / 2.0), 
+            (int) (position.getY() - height - 15), 
+            width, 
+            height);
         g.setColor(Color.black);
-        g.drawRect((int) (position.getX() - width / 2.0), (int) (position.getY() - height - 15), width, height);
+        g.drawRect((int) (position.getX() - width / 2.0), 
+            (int) (position.getY() - height - 15), 
+            width, 
+            height);
 
         for (GameButton button : buttons) {
             button.draw(g);
         }
 
-        g.drawString(String.valueOf(tower.getUpgradePrice()),(int)(position.getX() + width * (1/4.0)), (int)(position.getY()  - height));
-        g.drawString(String.valueOf(tower.getPrice()),(int)(position.getX() + width * (1/4.0)), (int)(position.getY()  - height / 2));
+        g.drawString(String.valueOf(tower.getUpgradePrice()),
+            (int) (position.getX() + width * (1 / 4.0)),
+            (int) (position.getY()  - height));
+        g.drawString(String.valueOf(tower.getPrice()),
+            (int) (position.getX() + width * (1 / 4.0)), 
+            (int) (position.getY()  - height / 2));
     }
 
     /**
-     * updates the isBuyable property of the upgrade button
+     * updates the isBuyable property of the upgrade button.
      */
     @Override
     public void update() {
-        buttons.get(0).setClickable(gameManager.getPlayerMoney() >= tower.getUpgradePrice() && tower.getUpgradeLevel() < 3);
-     }
+        buttons.get(0)
+            .setClickable(gameManager.getPlayerMoney() >= tower.getUpgradePrice() 
+                && tower.getUpgradeLevel() < 3);
+    }
 
     private void upgrade() {
         gameManager.upgradeTower(tower);
@@ -100,6 +128,7 @@ public class TowerMenu extends UIComponent implements DefaultMouseListener {
 
         int x = (int) (position.getX() - width / 2.0);
         buttons.get(0).setPosition(new Point2D.Double(x, (int) (position.getY() - height - 15)));
-        buttons.get(1).setPosition(new Point2D.Double(x, (int) (position.getY() - height / 2.0 - 15)));
+        buttons.get(1)
+            .setPosition(new Point2D.Double(x, (int) (position.getY() - height / 2.0 - 15)));
     }
 }

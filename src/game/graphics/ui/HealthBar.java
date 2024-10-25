@@ -4,14 +4,14 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 
 /**
- * Health bar ui for mobs
+ * Health bar ui for mobs.
  */
-public class HealthBar extends UIComponent{
+public class HealthBar extends UIComponent {
 
     private float healthPercentage;
 
     /**
-     * Constructor HealthBar
+     * Constructor HealthBar.
      * @param healthPercentage percentage
      * @param width width
      * @param height height
@@ -23,7 +23,7 @@ public class HealthBar extends UIComponent{
     }
 
     /**
-     * draws the health bar in the position
+     * draws the health bar in the position.
      * @param g graphics object
      */
     @Override
@@ -31,13 +31,14 @@ public class HealthBar extends UIComponent{
         g.drawRect((int) position.getX(), (int) position.getY(), width, height);
 
         g.setColor(Color.red);
-        g.fillRect((int) position.getX(), (int) position.getY(), (int) (width * healthPercentage), height);
+        g.fillRect((int) position.getX(), 
+            (int) position.getY(), (int) (width * healthPercentage), height);
 
         g.setColor(Color.black);
     }
 
     /**
-     * set health percentage
+     * set health percentage.
      * @param healthPercentage percentage to set
      */
     public void setHealthPercentage(float healthPercentage) {
@@ -45,7 +46,7 @@ public class HealthBar extends UIComponent{
     }
 
     /**
-     * does nothing
+     * does nothing.
      */
     @Override
     public void update() {

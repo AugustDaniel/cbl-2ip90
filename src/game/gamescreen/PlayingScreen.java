@@ -7,7 +7,6 @@ import game.graphics.ui.GameButton;
 import game.graphics.ui.menu.buymenu.BuyMenu;
 import game.npc.towers.Tower;
 import game.util.DefaultMouseListener;
-
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
@@ -19,22 +18,24 @@ import java.util.Optional;
  */
 public class PlayingScreen extends GameScreen implements DefaultMouseListener {
 
-    private TileMap map;
-    private BuyMenu buyMenu;
-    private final int BUY_MENU_WIDTH = 128;
+    private final TileMap map;
+    private final BuyMenu buyMenu;
+    private final int buyMenuWidth = 128;
     private Tower draggedTower;
-    private GameButton quitButton;
+    private final GameButton quitButton;
 
     /**
-     * Constructor PlayingScreen
+     * Constructor PlayingScreen.
      * @param game game object
      */
     public PlayingScreen(Game game, TileMap map) {
         super(game);
         this.map = map;
-        this.buyMenu = new BuyMenu(game.getGameManager(), new Point2D.Double(size.getWidth() - BUY_MENU_WIDTH, 0), BUY_MENU_WIDTH, size.height);
+        this.buyMenu = new BuyMenu(
+            game.getGameManager(), 
+            new Point2D.Double(size.getWidth() - buyMenuWidth, 0), buyMenuWidth, size.height);
         this.draggedTower = null;
-        this.quitButton = new GameButton(50, 20, new Point2D.Double(1,1), "Quit", this::quit);
+        this.quitButton = new GameButton(50, 20, new Point2D.Double(1, 1), "Quit", this::quit);
         addMouseMotionListener(this);
         addMouseListener(this);
         game.getGameManager().start();
@@ -48,8 +49,8 @@ public class PlayingScreen extends GameScreen implements DefaultMouseListener {
         buyMenu.draw(g2d);
 
 
-        game.getGameManager().getMobList().forEach(t -> t.draw(g2d)); // TODO maybe combine with towers
-        game.getGameManager().getTowerList().forEach(t -> t.draw(g2d)); //TODO maybe make better
+        game.getGameManager().getMobList().forEach(t -> t.draw(g2d)); 
+        game.getGameManager().getTowerList().forEach(t -> t.draw(g2d));
         if (draggedTower != null) {
             draggedTower.draw(g2d);
         }
@@ -58,7 +59,7 @@ public class PlayingScreen extends GameScreen implements DefaultMouseListener {
     }
 
     /**
-     * updates the buyMenu
+     * updates the buyMenu.
      */
     @Override
     public void update() {
