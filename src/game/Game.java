@@ -33,7 +33,7 @@ public class Game extends JPanel implements Runnable {
         super.paintComponent(g);
     }
 
-    public void init() {
+    private void init() {
         setLayout(cardLayout);
         statePanel.put(GameState.MENU, new MenuScreen(this));
         statePanel.put(GameState.PLAYING, new PlayingScreen(this, map));
