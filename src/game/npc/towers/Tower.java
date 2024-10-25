@@ -28,6 +28,7 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
     protected boolean isPlaced;
     protected TowerMenu towerMenu;
     protected int upgradePrice;
+    protected int upgradeLevel;
 
     /**
      * Constructor Tower
@@ -52,6 +53,7 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
         this.towerMenu = new TowerMenu(gameManager, this, 100, 50, position);
         this.timer = System.currentTimeMillis();
         this.upgradePrice = price;
+        this.upgradeLevel = 1;
     }
 
     /**
@@ -211,9 +213,14 @@ public abstract class Tower extends Npc implements Comparable<Tower> {
      * Increases the range by half of the current range.
      */
     public void upgrade() {
+        if (this.upgradeLevel == 5) {
+            return;
+        }
+
         this.upgradePrice += price;
         this.damage += damage / 2;
         this.range += range / 2;
+        this.upgradeLevel++;
     }
 
     /**

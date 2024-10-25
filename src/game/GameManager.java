@@ -1,6 +1,5 @@
 package game;
 
-import game.npc.mobs.GoblinMob;
 import game.npc.mobs.Mob;
 import game.npc.towers.RoundTower;
 import game.npc.towers.TankTower;
@@ -8,6 +7,7 @@ import game.npc.towers.Tower;
 import game.pathfinding.Pathfinding;
 import game.pathfinding.Vertex;
 import game.util.Updatable;
+import game.wave.WaveManager;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
@@ -31,6 +31,7 @@ public class GameManager implements Updatable {
     private final List<Mob> mobs;
     private boolean soundOn;
     private Game game;
+    private WaveManager waveManager;
 
     /**
      * Constructor GameManager
@@ -44,6 +45,7 @@ public class GameManager implements Updatable {
         this.mobs = new ArrayList<>();
         this.soundOn = true;
         this.game = game;
+        this.waveManager = new WaveManager(this);
         init();
     }
 
@@ -56,7 +58,7 @@ public class GameManager implements Updatable {
      * Start the game
      */
     public void start() {
-        this.mobs.add(new GoblinMob(this));
+        waveManager.start();
     }
 
     /**
@@ -138,12 +140,21 @@ public class GameManager implements Updatable {
     }
 
 
+    /**
+     * Updates all towers and mobs in the game.
+     * Also updates the wave manager.
+     */
     @Override
     public void update() {
         for (Tower tower : towerList) {
             tower.update(mobs);
         }
 
+        waveManager.update();
+        updateMobs();
+    }
+
+    private void updateMobs() {
         Iterator<Mob> iterator = mobs.iterator();
         while (iterator.hasNext()) {
             Mob mob = iterator.next();
@@ -194,6 +205,7 @@ public class GameManager implements Updatable {
         this.mobs.clear();
         playerMoney = DEFAULT_MONEY;
         playerHealth = DEFAULT_HEALTH;
+        this.waveManager.reset();
     }
 
     /**
@@ -221,5 +233,13 @@ public class GameManager implements Updatable {
      */
     public boolean isSoundOn() {
         return soundOn;
+    }
+
+    /**
+     * get wave counter
+     * @return the current wave counter
+     */
+    public int getWaveCounter() {
+        return waveManager.getWaveCounter();
     }
 }

@@ -67,6 +67,7 @@ public class BuyMenu extends UIComponent {
         g.setColor(Color.white);
         g.drawString("Health :" + gameManager.getPlayerHealth(), (int) position.getX() + ITEM_SPACING, (int) (position.getY() + height - ITEM_SPACING));
         g.drawString("Money " + gameManager.getPlayerMoney(), (int) position.getX() + ITEM_SPACING, (int) (position.getY() + height - 2 * ITEM_SPACING));
+        g.drawString("Wave " + gameManager.getWaveCounter(), (int) position.getX() + ITEM_SPACING, (int) (position.getY() + height - 3 * ITEM_SPACING));
         g.setColor(Color.black);
     }
 

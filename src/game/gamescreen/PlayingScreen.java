@@ -29,9 +29,9 @@ public class PlayingScreen extends GameScreen implements DefaultMouseListener {
      * Constructor PlayingScreen
      * @param game game object
      */
-    public PlayingScreen(Game game) {
+    public PlayingScreen(Game game, TileMap map) {
         super(game);
-        this.map = new TileMap();
+        this.map = map;
         this.buyMenu = new BuyMenu(game.getGameManager(), new Point2D.Double(size.getWidth() - BUY_MENU_WIDTH, 0), BUY_MENU_WIDTH, size.height);
         this.draggedTower = null;
         this.quitButton = new GameButton(50, 20, new Point2D.Double(1,1), "Quit", this::quit);

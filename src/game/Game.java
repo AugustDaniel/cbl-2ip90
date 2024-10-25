@@ -4,6 +4,7 @@ import game.gamescreen.*;
 import game.gamescreen.menuscreen.MenuScreen;
 import game.gamescreen.menuscreen.ModeScreen;
 import game.gamescreen.menuscreen.SettingsScreen;
+import game.graphics.map.TileMap;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,8 +17,10 @@ public class Game extends JPanel implements Runnable {
     private final EnumMap<GameState, GameScreen> statePanel;
     private final CardLayout cardLayout;
     private final GameManager gameManager;
+    private final TileMap map;
 
     public Game() {
+        this.map = new TileMap();
         this.state = GameState.MENU;
         this.gameManager = new GameManager(this);
         this.statePanel = new EnumMap<>(GameState.class);
@@ -33,7 +36,7 @@ public class Game extends JPanel implements Runnable {
     public void init() {
         setLayout(cardLayout);
         statePanel.put(GameState.MENU, new MenuScreen(this));
-        statePanel.put(GameState.PLAYING, new PlayingScreen(this));
+        statePanel.put(GameState.PLAYING, new PlayingScreen(this, map));
         statePanel.put(GameState.MODE_SELECTION, new ModeScreen(this));
         statePanel.put(GameState.SETTINGS, new SettingsScreen(this));
 
