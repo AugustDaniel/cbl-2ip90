@@ -16,6 +16,10 @@ public class Pathfinding {
     public static Map<Vertex, Vertex> path = new HashMap<>();
     public static Graph graph;
 
+    /**
+     * Uses a breath first search to create a path from the start to end point.
+     * Puts the information in the path hashmap.
+     */
     public static void createPath() {
         Queue<Vertex> frontier = new ArrayDeque<>();
         frontier.offer(startPoint);
