@@ -172,16 +172,18 @@ public class GameManager implements Updatable {
     }
 
     private boolean checkMobPosition(Mob mob) {
-        if (mob.getCurrentVertex() == Pathfinding.endPoint) {
-            this.playerHealth -= mob.getDamage();
-            checkGameOver();
-            return true;
-        }
+        if (mob.isAtTargetPosition()) {
+            if (mob.getCurrentVertex() == Pathfinding.endPoint) {
+                this.playerHealth -= mob.getDamage();
+                checkGameOver();
+                return true;
+            }
 
-        Vertex next = Pathfinding.path.get(mob.getCurrentVertex());
+            Vertex next = Pathfinding.path.get(mob.getCurrentVertex());
 
-        if (next != null) {
-            mob.setCurrentVertex(Pathfinding.path.get(mob.getCurrentVertex()));
+            if (next != null) {
+                mob.setCurrentVertex(Pathfinding.path.get(mob.getCurrentVertex()));
+            }
         }
 
         return false;
