@@ -146,7 +146,7 @@ public class PlayingScreen extends GameScreen implements DefaultMouseListener {
     }
 
     private void quit() {
-        game.setState(GameState.MENU);
+        game.setState(GameState.GAME_OVER);
         game.getGameManager().endGame();
     }
 }

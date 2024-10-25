@@ -1,6 +1,7 @@
 package game;
 
 import game.gamescreen.*;
+import game.gamescreen.menuscreen.GameOverScreen;
 import game.gamescreen.menuscreen.MenuScreen;
 import game.gamescreen.menuscreen.ModeScreen;
 import game.gamescreen.menuscreen.SettingsScreen;
@@ -39,6 +40,7 @@ public class Game extends JPanel implements Runnable {
         statePanel.put(GameState.PLAYING, new PlayingScreen(this, map));
         statePanel.put(GameState.MODE_SELECTION, new ModeScreen(this));
         statePanel.put(GameState.SETTINGS, new SettingsScreen(this));
+        statePanel.put(GameState.GAME_OVER, new GameOverScreen(this));
 
         for (GameState gameState : statePanel.keySet()) {
             add(statePanel.get(gameState), gameState.name());

@@ -7,5 +7,6 @@ public enum GameState {
     PLAYING,
     MENU,
     MODE_SELECTION,
-    SETTINGS
+    SETTINGS,
+    GAME_OVER
 }
