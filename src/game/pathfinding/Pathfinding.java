@@ -8,7 +8,15 @@ import java.util.Queue;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-public class Pathfinding {
+/**
+ * Utility class for pathfinding inside the tileMap.
+ * Using the path hashmap the next vertex in the path can be found
+ * by putting in the current vertex.
+ * Before pathfinding can be used the initPathfinding method has to be called first.
+ * In the tileMap there needs to be a start, end and lane object.
+ * The path will be from the start to the end along the lane.
+ */
+public final class Pathfinding {
 
     public static Vertex startPoint;
     public static Vertex endPoint;
@@ -16,10 +24,10 @@ public class Pathfinding {
     public static Graph graph;
 
     /**
-     * Uses a breath first search to create a path from the start to end point.
-     * Puts the information in the path hashmap.
+     * Finds path using a BFS.
+     * Source: https://www.redblobgames.com/pathfinding/a-star/introduction.html
      */
-    public static void createPath() {
+    private static void createPath() {
         Queue<Vertex> frontier = new ArrayDeque<>();
         frontier.offer(startPoint);
         Map<Vertex, Vertex> cameFrom = new HashMap<>();
@@ -38,6 +46,17 @@ public class Pathfinding {
         }
     }
 
+    /**
+     * Will initialize the pathfinding for the tileMap.
+     * Reads the object nodeList and creates the necessary start and end points in the graph.
+     * For the lane it will add the appropriate vertexes as neighbour so a path can be found.
+     * Afterward, a BFS will be done to find a path.
+     * @param tileHeight tileHeight
+     * @param tileWidth tilWidth
+     * @param mapHeight mapHeight
+     * @param mapWidth mapWidth
+     * @param objects nodeList with objects received read from tileMap
+     */
     public static void initPathfinding(int tileHeight, 
         int tileWidth, int mapHeight, int mapWidth, NodeList objects) {
         initGraph(mapHeight, mapWidth);
@@ -49,44 +68,48 @@ public class Pathfinding {
 
             if (element.getAttribute("name").equals("start")) {
                 startPoint = graph.getVertex((int) (Double.parseDouble(content
-                    .getAttribute("x")) / 32), 
-                (int) (Double.parseDouble(content.getAttribute("y")) / 32));
+                    .getAttribute("x")) / tileWidth),
+                (int) (Double.parseDouble(content.getAttribute("y")) / tileWidth));
             }
 
             if (element.getAttribute("name").equals("lane")) {
-                NodeList lanes = element.getElementsByTagName("object");
-
-                for (int j = 0; j < lanes.getLength(); j++) {
-                    content = (Element) lanes.item(j);
-
-                    int xPos = (int) (Double.parseDouble(content.getAttribute("x")) / tileWidth);
-                    int yPos = (int) (Double.parseDouble(content.getAttribute("y")) / tileHeight);
-                    int height = (int) (Double.parseDouble(content
-                        .getAttribute("height")) / tileHeight);
-                    int width = (int) (Double.parseDouble(content
-                        .getAttribute("width")) / tileWidth);
-
-                    Vertex current = null;
-                    Vertex previous = null;
-                    for (int y = yPos; y < yPos + height + 1; y++) {
-                        for (int x = xPos; x < xPos + width + 1; x++) {
-                            current = graph.getVertex(x, y);
-
-                            addVertexAsNeighbour(current, previous);
-                            previous = current;
-                        }
-                    }
-                }
+                createLane(element, tileWidth, tileHeight);
             }
 
             if (element.getAttribute("name").equals("end")) {
                 endPoint = graph.getVertex((int) (Double.parseDouble(content
-                    .getAttribute("x")) / 32), 
-                    (int) (Double.parseDouble(content.getAttribute("y")) / 32));
+                    .getAttribute("x")) / tileHeight),
+                    (int) (Double.parseDouble(content.getAttribute("y")) / tileWidth));
             }
         }
 
         createPath();
+    }
+
+    private static void createLane(Element element, int tileWidth, int tileHeight) {
+        NodeList lanes = element.getElementsByTagName("object");
+
+        for (int j = 0; j < lanes.getLength(); j++) {
+            Element content = (Element) lanes.item(j);
+
+            int xPos = (int) (Double.parseDouble(content.getAttribute("x")) / tileWidth);
+            int yPos = (int) (Double.parseDouble(content.getAttribute("y")) / tileHeight);
+            int height = (int) (Double.parseDouble(content
+                    .getAttribute("height")) / tileHeight);
+            int width = (int) (Double.parseDouble(content
+                    .getAttribute("width")) / tileWidth);
+
+            Vertex current;
+            Vertex previous = null;
+            for (int y = yPos; y < yPos + height + 1; y++) {
+                for (int x = xPos; x < xPos + width + 1; x++) {
+                    current = graph.getVertex(x, y);
+
+                    addVertexAsNeighbour(current, previous);
+                    previous = current;
+                }
+            }
+        }
     }
 
     private static void addVertexAsNeighbour(Vertex current, Vertex toAdd) {

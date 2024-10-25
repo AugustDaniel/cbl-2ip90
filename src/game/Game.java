@@ -11,7 +11,11 @@ import java.awt.*;
 import java.util.EnumMap;
 import javax.swing.*;
 
-
+/**
+ * Game object.
+ * Houses the game thread and will display the appropriate GameScreen.
+ * Will initialise the gameManager.
+ */
 public class Game extends JPanel implements Runnable {
     private GameState state;
     public Thread thread;
@@ -20,6 +24,9 @@ public class Game extends JPanel implements Runnable {
     private final GameManager gameManager;
     private final TileMap map;
 
+    /**
+     * Constructor Game
+     */
     public Game() {
         this.map = new TileMap();
         this.state = GameState.MENU;
@@ -49,11 +56,19 @@ public class Game extends JPanel implements Runnable {
         cardLayout.show(this, this.state.name());
     }
 
+    /**
+     * Starts the game thread
+     */
     public void start() {
         thread = new Thread(this);
         thread.start();
     }
 
+    /**
+     * Will update and paint the game a certain amount of times per second.
+     * Repainting is done 120 times per second.
+     * updating is done 60 times per second.
+     */
     @Override
     public void run() {
         double fpsSet = 120.0;
@@ -64,17 +79,12 @@ public class Game extends JPanel implements Runnable {
         double upsSet = 60.0;
         double timePerUpdate = 1000000000.0 / upsSet;
 
-        int updates = 0;
-        int frames = 0;
-        long lastTimeCheck = System.currentTimeMillis();
-
         long now;
         while (true) {
             now = System.nanoTime();
 
             if (now - lastFrame >= timePerFrame) {
                 lastFrame = System.nanoTime();
-                frames++;
                 this.statePanel.get(this.state).repaint();
             }
 
@@ -83,15 +93,7 @@ public class Game extends JPanel implements Runnable {
                     updateGame();
                 }
 
-                updates++;
                 lastUpdate = System.nanoTime();
-            }
-
-            if (System.currentTimeMillis() - lastTimeCheck >= 1000) {
-                System.out.println("FPS" + frames + " | UPS: " + updates);
-                updates = 0;
-                frames = 0;
-                lastTimeCheck = System.currentTimeMillis();
             }
         }
     }
@@ -104,10 +106,19 @@ public class Game extends JPanel implements Runnable {
         }
     }
 
+    /**
+     * Get game manager.
+     * @return gameManager
+     */
     public GameManager getGameManager() {
         return this.gameManager;
     }
 
+    /**
+     * Sets the state of the game.
+     * Will show the appropriate GameScreen.
+     * @param state GameState
+     */
     public void setState(GameState state) {
         this.state = state;
 
