@@ -31,6 +31,7 @@ public class GameManager implements Updatable {
     private boolean soundOn;
     private Game game;
     private WaveManager waveManager;
+    private boolean gameOver;
 
     /**
      * Constructor GameManager.
@@ -44,6 +45,7 @@ public class GameManager implements Updatable {
         this.mobs = new ArrayList<>();
         this.soundOn = true;
         this.game = game;
+        this.gameOver = false;
         this.waveManager = new WaveManager(this);
         init();
     }
@@ -145,6 +147,11 @@ public class GameManager implements Updatable {
      */
     @Override
     public void update() {
+        if (gameOver) {
+            endGame();
+            return;
+        }
+
         for (Tower tower : towerList) {
             tower.update(mobs);
         }
@@ -175,7 +182,7 @@ public class GameManager implements Updatable {
         if (mob.isAtTargetPosition()) {
             if (mob.getCurrentVertex() == Pathfinding.endPoint) {
                 this.playerHealth -= mob.getDamage();
-                checkGameOver();
+                this.gameOver = this.playerHealth <= 0;
                 return true;
             }
 
@@ -189,18 +196,12 @@ public class GameManager implements Updatable {
         return false;
     }
 
-    private void checkGameOver() {
-        if (this.playerHealth <= 0) {
-            game.setState(GameState.GAME_OVER);
-            endGame();
-        }
-    }
-
     /**
      * End game.
      * Resets everything and changes state to game over.
      */
     public void endGame() {
+        game.setState(GameState.GAME_OVER);
         clear();
     }
 
@@ -213,6 +214,7 @@ public class GameManager implements Updatable {
         playerMoney = defaultMoney;
         playerHealth = defaultHealth;
         this.waveManager.reset();
+        this.gameOver = false;
     }
 
     /**

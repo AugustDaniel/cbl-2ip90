@@ -123,6 +123,7 @@ public class Game extends JPanel implements Runnable {
         this.state = state;
 
         if (state == GameState.GAME_OVER) {
+            System.out.println(gameManager.getWaveCounter());
             ((GameOverScreen) (statePanel.get(state))).setWaveCounter(gameManager.getWaveCounter());
         }
 

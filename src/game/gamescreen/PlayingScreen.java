@@ -5,12 +5,15 @@ import game.GameState;
 import game.graphics.map.TileMap;
 import game.graphics.ui.GameButton;
 import game.graphics.ui.menu.buymenu.BuyMenu;
+import game.npc.mobs.Mob;
 import game.npc.towers.Tower;
 import game.util.DefaultMouseListener;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
 import java.util.Optional;
+import java.util.List;
 
 /**
  * PlayingScreen used as a GameScreen.
@@ -49,7 +52,8 @@ public class PlayingScreen extends GameScreen implements DefaultMouseListener {
         buyMenu.draw(g2d);
 
 
-        game.getGameManager().getMobList().forEach(t -> t.draw(g2d)); 
+        List<Mob> moblist = new ArrayList<>(game.getGameManager().getMobList());
+        moblist.forEach(t -> t.draw(g2d));
         game.getGameManager().getTowerList().forEach(t -> t.draw(g2d));
         if (draggedTower != null) {
             draggedTower.draw(g2d);
@@ -147,7 +151,6 @@ public class PlayingScreen extends GameScreen implements DefaultMouseListener {
     }
 
     private void quit() {
-        game.setState(GameState.GAME_OVER);
         game.getGameManager().endGame();
     }
 }
