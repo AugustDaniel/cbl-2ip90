@@ -39,13 +39,13 @@ Two topics of choice had to be chosen as subjects to research during the develop
 
 To make sure the mobs walk along a specified path, pathfinding had to be used. As this is a more challenging subject to implement, it was chosen as our topic of choice. By working on this topic, we came to understand more about the graph data structure and about algorithms like breadth first search. 
 
-During the making of our tile map using the software called Tiled, we indicated that certain tiles were part of the pathfinding. We marked a start and end point, followed by marking the lane where the mobs are supposed to be walking on. Inside of our code we made a graph, where every tile in our tile map is a vertex. We then connected all the vertexes that were marked. This means that we now have a graph where only the lane (including the start and end point) vertexes are connected to each other. 
+During the making of our tile map using the software called Tiled, we indicated that certain tiles were part of the pathfinding. We marked a start and end point, followed by marking the lane where the mobs are supposed to be walking on. Inside our code we made a graph, where every tile in our tile map is a vertex. We then connected all the vertexes that were marked. This means that we now have a graph where only the lane (including the start and end point) vertexes are connected to each other. 
 
 Now a breadth first search in done from the start point to create a HashMap containing the path. Mobs have a vertex they are on and when they need to go to the next vertex the game will access the HashMap to find the next vertex in the path. This continues until they reach their destination.
 
 The graph that was made can now also be used to detect whether a tower should be able to be placed on a certain location. If a vertex does not have any neighbours, means that it is not part of the lane, and a tower should be able to be placed there.
 
-By implementing pathfinding, the tile map could be changed on the fly without having to rework the entire code. This is because the code only looks for the lane markings inside the tile map and doesn’t rely on any hardcoded values. Mobs walking along a lane is also essential for a tower defense game and implementing algorithms for this purpose is a lot cleaner than hardcoding a certain path for the mobs to walk.
+By implementing pathfinding, the tile map could be changed on the fly without having to rework the entire code. This is because the code only looks for the lane markings inside the tile map and doesn’t rely on any hardcoded values. Mobs walking along a lane is also essential for a tower defense game and implementing algorithms for this purpose is a lot cleaner than hard coding a certain path for the mobs to walk.
 
 The main source that we used was: https://www.redblobgames.com/pathfinding/a-star/introduction.html. Even though it talks about the a* algorithm for the most part, the beginning section has all the information to implement pathfinding using a breadth first search.
 
@@ -66,7 +66,7 @@ We made 4 lists: To Do, Doing, Check and Done. Anything that still had to be don
 
 ![dragging](.github/assets/dragging.gif?raw=true)
 
-This helped us tremendously during the project as we could now see what everyone was working on and not have conflicting tasks. It is also a good indicator of the progress of the project, as in one look all the still needed and already done tasks can be seen. To fit our needs, we created an automation script to sort the To Do list based on priority. This script would put all priority 1 cards at the top and afterwards priority 2 and 3 respectively. With this script it was easier to assess the status of our project and make decisions on what card to work on next.
+This helped us tremendously during the project as we could now see what everyone was working on and not have conflicting tasks. It is also a good indicator of the progress of the project, as in one look all the still needed and already done tasks can be seen. To fit our needs, we created an automation script to sort the To Do list based on priority. This script would put all priority 1 cards at the top and afterward priority 2 and 3 respectively. With this script it was easier to assess the status of our project and make decisions on what card to work on next.
 
 ![automation](.github/assets/automation.gif?raw=true)
 
