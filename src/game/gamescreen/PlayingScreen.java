@@ -1,7 +1,6 @@
 package game.gamescreen;
 
 import game.Game;
-import game.GameState;
 import game.graphics.map.TileMap;
 import game.graphics.ui.GameButton;
 import game.graphics.ui.menu.buymenu.BuyMenu;
@@ -12,8 +11,8 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * PlayingScreen used as a GameScreen.
