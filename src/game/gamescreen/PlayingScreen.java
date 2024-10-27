@@ -119,6 +119,13 @@ public class PlayingScreen extends GameScreen implements DefaultMouseListener {
 
     private void placeDraggedTower() {
         if (map.isFree(draggedTower.getPosition())) {
+            for (Tower t: game.getGameManager().getTowerList()) {
+                if (t.contains(draggedTower.getPosition())) {
+                    draggedTower = null;
+                    return;
+                }
+            }
+
             game.getGameManager().addTower(draggedTower);
         }
 
