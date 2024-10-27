@@ -38,6 +38,8 @@ public class WaveManager implements Updatable {
      */
     public void reset() {
         this.waveCounter = 1;
+        this.breakStarted = false;
+        startNewWave();
     }
 
     /**
