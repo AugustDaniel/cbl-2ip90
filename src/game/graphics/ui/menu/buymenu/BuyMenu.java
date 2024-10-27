@@ -77,10 +77,10 @@ public class BuyMenu extends UIComponent {
             (int) (position.getY() + height - itemSpacing));
         g.drawString("Money " + gameManager.getPlayerMoney(), 
             (int) position.getX() + itemSpacing, 
-            (int) (position.getY() + height - 2 * itemSpacing));
+            (int) (position.getY() + height - 2 * itemSpacing) - 4);
         g.drawString("Wave " + gameManager.getWaveCounter(), 
             (int) position.getX() + itemSpacing, 
-            (int) (position.getY() + height - 3 * itemSpacing));
+            (int) (position.getY() + height - 3 * itemSpacing) - 8);
         g.setColor(Color.black);
     }
 
