@@ -51,12 +51,4 @@ public class ModeScreen extends MenuScreen {
 
         setUpButtons();
     }
-
-    /**
-     * Update does nothing.
-     */
-    @Override
-    public void update() {
-
-    }
 }

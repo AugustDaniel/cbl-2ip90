@@ -49,14 +49,6 @@ public class GameOverScreen extends MenuScreen {
     }
 
     /**
-     * does nothing.
-     */
-    @Override
-    public void update() {
-
-    }
-
-    /**
      * sets wave counter to be displayed.
      * @param counter counter
      */
